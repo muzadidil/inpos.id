@@ -1,0 +1,7 @@
+DOMAIN WEB TOKO: namatoko.inpos.id (toko awal inpos.inpos.id)
+Owner/Karyawan: app.inpos.id; subdomain=inpos; username=inpos; PIN awal 112233
+Super Admin: adms.inpos.id; username=superinpos; PIN awal 112233
+Backend: api.inpos.id
+
+PIN harus diganti saat login pertama. Hapus nilai INITIAL_*_PIN dari .env seusai menjalankan npm run seed:initial.
+Buka README-CPANEL.md untuk setup wildcard DNS+Apache+SSL atau subdomain manual.
