@@ -12,7 +12,7 @@ async function bootstrap(){
  app.setGlobalPrefix('v1');
  const origins=['https://inpos.id','https://www.inpos.id','https://app.inpos.id','https://adms.inpos.id'];
  const allowed=(origin:string)=>origins.includes(origin)||/^https:\/\/(?!api\.|app\.|adms\.|www\.|shop\.)[a-z0-9-]+\.inpos\.id$/.test(origin)||(process.env.NODE_ENV!=='production'&&/^http:\/\/localhost:\d+$/.test(origin));
- app.enableCors({origin:(origin,cb)=>cb(null,!origin||allowed(origin)),credentials:true,methods:['GET','POST','PATCH','DELETE','OPTIONS'],allowedHeaders:['Content-Type','X-INPOS-CSRF']});
+ app.enableCors({origin:(origin:string|undefined,cb:(err:Error|null,allow?:boolean)=>void)=>cb(null,!origin||allowed(origin)),credentials:true,methods:['GET','POST','PATCH','DELETE','OPTIONS'],allowedHeaders:['Content-Type','X-INPOS-CSRF']});
  app.use((req:any,res:any,next:any)=>{const origin=req.headers.origin;
    if(origin&&!allowed(origin))return res.status(403).json({message:'Origin tidak diizinkan'});
    next();
