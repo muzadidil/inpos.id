@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "nest start --watch",
-    "build": "prisma generate && nest build",
+    "build": "prisma generate && nest build && node scripts/hostinger-entry.cjs",
     "start": "node dist/main.js",
     "start:prod": "node dist/main.js",
     "prisma:generate": "prisma generate",
