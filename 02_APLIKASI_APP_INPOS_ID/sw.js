@@ -1,7 +1,7 @@
 // INPOS PWA shell: static files only, never API responses or personal data.
-const CACHE='inpos-shell-v4-bf5816162983';
-const SHELL=["/", "/index.html", "/assets/client.2ccfea4f73b7.js", "/assets/app.77b5b3076875.js", "/assets/style.c3786a19386a.css", "/icon.png", "/manifest.webmanifest"];
-const ASSETS=new Set(["/assets/client.2ccfea4f73b7.js", "/assets/app.77b5b3076875.js", "/assets/style.c3786a19386a.css", "/icon.png", "/icon-192.png", "/icon-512.png", "/manifest.webmanifest"]);
+const CACHE='inpos-shell-v5-v721';
+const SHELL=["/index.html", "/icon.png", "/manifest.webmanifest"];
+const ASSETS=new Set(["/icon.png", "/icon-192.png", "/icon-512.png", "/manifest.webmanifest"]);
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL)));self.skipWaiting();});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('inpos-shell-')&&k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim();});
 self.addEventListener('fetch',event=>{
