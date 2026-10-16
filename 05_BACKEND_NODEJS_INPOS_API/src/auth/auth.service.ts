@@ -11,7 +11,7 @@ export type Session={uid:string,tid:string|null,role:UserRole,jti:string,pv:stri
 export class AuthService {
  constructor(private readonly prisma:PrismaService,private readonly jwt:JwtService){}
  async register(dto:RegisterDto){
-   if(!process.env.REGISTRATION_REFERRAL_CODE||dto.referralCode!==process.env.REGISTRATION_REFERRAL_CODE)throw new ForbiddenException('Kode referral tidak valid');
+   if(!process.env.REGISTRATION_REFERRAL_CODE||dto.referralCode!==process.env.REGISTRATION_REFERRAL_CODE)throw new ForbiddenException('Kode referral belum terdaftar');
    const slug=dto.slug.toLowerCase();if(['admin','api','app','www','shop','adms','support'].includes(slug))throw new BadRequestException('Nama subdomain disediakan untuk sistem');
    const settings=await this.prisma.systemConfig.findUnique({where:{id:1}});
    const days=settings?.trialDays||Number(process.env.TRIAL_DAYS)||60;
