@@ -1,5 +1,5 @@
 // INPOS PWA shell: static files only, never API responses or personal data.
-const CACHE='inpos-shell-v6-v721b';
+const CACHE='inpos-shell-v7-v721c';
 const SHELL=["/index.html", "/icon.png", "/manifest.webmanifest"];
 const ASSETS=new Set(["/icon.png", "/icon-192.png", "/icon-512.png", "/manifest.webmanifest"]);
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL)));self.skipWaiting();});
