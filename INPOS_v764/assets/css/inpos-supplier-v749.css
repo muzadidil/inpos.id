@@ -1,0 +1,95 @@
+
+/* INPOS v749 — Supplier compact: semua ukuran mengikuti isi kartu, bukan tinggi area scroll. */
+#screen-suppliers #supplierGrid.supplier-purchase-list-v209 {
+  display: grid !important;
+  grid-auto-rows: max-content !important;
+  align-content: start !important;
+  align-items: start !important;
+  justify-items: stretch !important;
+  min-height: 0 !important;
+  height: auto !important;
+}
+#screen-suppliers #supplierGrid.supplier-purchase-list-v209 > .supplier-list-card-v209 {
+  box-sizing: border-box !important;
+  display: grid !important;
+  grid-template-rows: repeat(3, max-content) !important;
+  align-self: start !important;
+  align-content: start !important;
+  height: max-content !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  gap: 9px !important;
+  padding: 12px !important;
+  border-radius: 14px !important;
+}
+#screen-suppliers #supplierGrid .supplier-list-card-v209 .purchase-list-metrics-v208 {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  grid-auto-rows: max-content !important;
+  align-items: start !important;
+  align-content: start !important;
+  gap: 7px !important;
+}
+#screen-suppliers #supplierGrid .supplier-list-card-v209 .purchase-list-metric-v208 {
+  height: max-content !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  padding: 8px !important;
+  border-radius: 10px !important;
+}
+#screen-suppliers #supplierGrid .supplier-list-card-v209 .purchase-list-metric-v208 b {
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  line-height: 1.35 !important;
+}
+#screen-suppliers #supplierGrid .supplier-list-card-v209 .purchase-list-bottom-v208 {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+#screen-suppliers #supplierGrid .supplier-list-card-v209 .supplier-list-address-v209 {min-width:0 !important;}
+#screen-suppliers #supplierGrid .supplier-list-card-v209 .purchase-list-actions-v208 {
+  display:flex !important;
+  align-self:center !important;
+  gap:6px !important;
+}
+#screen-suppliers #supplierGrid .supplier-list-card-v209 .purchase-list-actions-v208 button {
+  min-height:36px !important;
+  padding:0 10px !important;
+  border-radius:9px !important;
+}
+@media (max-width:767px) {
+  #screen-suppliers #supplierGrid.supplier-purchase-list-v209 {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  #screen-suppliers #supplierGrid .supplier-list-card-v209 .purchase-list-top-v208 {
+    grid-template-columns: 38px minmax(0, 1fr) auto !important;
+    gap: 9px !important;
+  }
+  #screen-suppliers #supplierGrid .supplier-list-card-v209 .purchase-list-icon-v208 {
+    width: 38px !important;
+    height: 38px !important;
+  }
+  #screen-suppliers #supplierGrid .supplier-list-card-v209 .supplier-list-address-v209 b {
+    max-width: none !important;
+  }
+}
+@media (max-width:360px) {
+  #screen-suppliers #supplierGrid.supplier-purchase-list-v209 > .supplier-list-card-v209 {padding:10px !important;gap:8px !important;}
+  #screen-suppliers #supplierGrid .supplier-list-card-v209 .purchase-list-metrics-v208 {gap:5px !important;}
+  #screen-suppliers #supplierGrid .supplier-list-card-v209 .purchase-list-metric-v208 {padding:7px 6px !important;}
+  #screen-suppliers #supplierGrid .supplier-list-card-v209 .purchase-list-bottom-v208 {grid-template-columns:minmax(0,1fr) auto !important;gap:5px !important;}
+  #screen-suppliers #supplierGrid .supplier-list-card-v209 .purchase-list-actions-v208 button {padding:0 8px !important;}
+}
+/* Prevent mobile content-visibility placeholders from creating overflowing 27px supplier cards. */
+#screen-suppliers #supplierGrid.supplier-purchase-list-v209 {
+  flex: 0 0 auto !important;
+}
+#screen-suppliers #supplierGrid.supplier-purchase-list-v209 > .supplier-list-card-v209 {
+  content-visibility: visible !important;
+  contain-intrinsic-size: none !important;
+  height: auto !important;
+}

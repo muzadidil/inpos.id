@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#d91d36">
+<meta name="description" content="Jelajahi katalog produk, cari barang dan buat pesanan di Web Toko INPOS.">
+<link rel="icon" href="/assets/inpos-favicon-64.png" type="image/png" sizes="64x64">
+<title>Web Toko — INPOS</title>
+<link rel="stylesheet" href="./assets/css/web-toko-head-65f3aa6dbb2b.css">
+<style id="inposPublicTemplatesV735" data-inpos-externalized="true"></style>
+<link rel="stylesheet" href="/assets/css/inpos-webtoko-template-v753.css"><link rel="stylesheet" href="/assets/css/inpos-webtoko-contrast-v754.css?v=754"><link rel="stylesheet" href="/assets/css/inpos-webtoko-template-v759.css?v=760"><link rel="stylesheet" href="/assets/css/inpos-webtoko-gradient-v760.css?v=760"><link rel="stylesheet" href="/assets/css/inpos-webtoko-audit-v761.css?v=761"><link rel="stylesheet" href="/assets/css/inpos-webtoko-header-join-v762.css?v=763"></head>
+<body>
+<header><div class="container nav"><div class="identity"><img src="/assets/logo-splash.webp" alt="Logo INPOS" width="42" height="42"><span><strong id="navStoreName">Web Toko</strong><small>Dibuat dengan INPOS</small></span></div><button class="outline" type="button" id="openCart" aria-haspopup="dialog">Keranjang <b id="count">0</b></button></div></header>
+<section class="hero"><div class="container hero-inner"><div><span class="eyebrow"><i id="statusDot" class="dot"></i><span id="statusText">Katalog digital</span></span><h1 id="storeName">Web Toko INPOS</h1><p id="storeDescription">Temukan produk pilihan dari toko kami. Pilih barang dan pesan dengan mudah.</p><div class="info"><span id="addressLine"></span><span>Belanja praktis melalui WhatsApp</span></div><p class="notice" id="notice" hidden></p></div><img class="mark" src="/assets/logo-splash.webp" alt="" width="116" height="116"></div></section>
+<main class="container catalog"><div class="control"><div><h2>Daftar Produk</h2><small id="resultCount">Memuat katalog…</small></div><div class="filters"><label class="search"><span class="sr-only">Cari produk</span><input type="search" id="search" placeholder="Cari produk…" autocomplete="off"></label><label><span class="sr-only">Filter kategori</span><select id="category"><option value="">Semua kategori</option></select></label></div></div><div class="grid" id="grid" aria-live="polite"></div></main>
+<footer class="footer">© <span id="year"></span> <span id="footerStoreName">INPOS</span> · Powered by INPOS</footer>
+<button class="mini-cart" type="button" id="mobileCart" hidden>Lihat Keranjang</button>
+<div class="overlay" id="cartOverlay" hidden><section class="panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle"><div class="panel-head"><h2 id="cartTitle">Keranjang Belanja</h2><button type="button" id="closeCart" class="icon-btn" aria-label="Tutup">×</button></div><div id="cartItems" class="items"></div><div class="cart-footer"><div class="tot"><span>Subtotal produk</span><b id="cartTotal">Rp0</b></div><button type="button" id="checkout" class="confirm">Pesan melalui WhatsApp</button><p class="hint" id="checkoutHint">Pesanan dikirim sebagai pesan WhatsApp. Transaksi belum diproses otomatis.</p></div></section></div>
+<script>
+(function(){'use strict';
+ const $=id=>document.getElementById(id),currency=n=>'Rp'+Math.max(0,Number(n)||0).toLocaleString('id-ID'),escapePhone=n=>{let t=String(n||'').replace(/\D/g,'');return t.startsWith('0')?'62'+t.slice(1):t.startsWith('8')?'62'+t:t};
+ // Alamat kanonis: https://toko.inpos.id/namatoko (tanpa subdomain khusus per tenant).
+ // Query ?slug=namatoko dipakai hanya untuk pratinjau lokal tanpa aturan rewrite server.
+ const pathSegment=location.pathname.split('/').filter(Boolean)[0]||'';
+ // Nama toko di path selalu lebih tinggi prioritasnya daripada query string.
+ // Ini mencegah /tokoini?slug=tokolain menampilkan katalog yang bukan milik URL tersebut.
+ const pathSlug=(!/^(?:web-toko(?:\.html)?|index(?:\.html)?)$/i.test(pathSegment)?pathSegment:'');
+ const params=new URLSearchParams(location.search);
+ const rawSlug=(pathSlug||params.get('slug')||params.get('toko')||'').toLowerCase();
+ const requestedSlug=/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(rawSlug)&&rawSlug.length<=40?rawSlug:'';
+ const hasInvalidShopPath=Boolean(rawSlug)&&!requestedSlug;
+ const state={store:{name:requestedSlug?'Toko '+requestedSlug:'Web Toko INPOS',description:'Temukan produk pilihan dari toko kami.',whatsapp:'',address:'',themeColor:'#d91d36',showOrderButton:true,shippingFee:0},products:[],cart:[]};
+ const safeImage=s=>{const str=String(s||'');return /^data:image\/(?:png|jpe?g|webp);base64,[\w+\/=]+$/i.test(str)||/^https:\/\//i.test(str)?str:''};
+ const cleanProduct=p=>({id:String(p.id||p.code||'').slice(0,80),name:String(p.name||'Produk').slice(0,150),category:String(p.category||'Umum').slice(0,90),unit:String(p.unit||'pcs').slice(0,30),price:p.manualPrice===true||p.price==null||!Number.isFinite(Number(p.price))?null:Math.max(0,Number(p.price)),available:p.available===false?false:(p.noStock===true?true:Number.isFinite(Number(p.stock??1))&&Number(p.stock??1)>0),stock:p.stock==null||p.noStock===true?null:Number.isFinite(Number(p.stock))?Math.max(0,Math.floor(Number(p.stock))):0,image:safeImage(p.image),emoji:String(p.emoji||'📦').slice(0,4)});
+ const sourceLocal=()=>{try{const db=JSON.parse(localStorage.getItem('myposid_demo_v3')||'null');if(!db?.settings)return null;const c=db.settings.marketOnline||{};return{store:{name:db.settings.store||'Web Toko INPOS',description:c.description||c.tickerText||'Belanja mudah dari katalog online toko kami.',address:db.settings.address||'',whatsapp:c.whatsapp||db.settings.phone||'',themeColor:c.themeColor||'#d91d36',storeType:c.storeType||'retail',templates:c.templates||{},headerGradient:c.headerGradient||'auto',showOrderButton:c.showOrderButton!==false,shippingFee:c.shippingFee||0},products:(db.products||[]).filter(p=>p&&p.active!==false&&p.marketOnline!==false).slice(0,250).map(p=>({...p,available:p.noStock||Number(p.stock)>0}))}}catch(_){return null}};
+ function mount(data){state.store={...state.store,...(data?.store||{})};// JSON katalog publik bisa tidak lengkap: abaikan entri rusak dan ID duplikat.
+ const usedIds=new Set();
+ state.products=Array.isArray(data?.products)?data.products.filter(p=>p&&typeof p==='object'&&!Array.isArray(p)).map(cleanProduct).filter(p=>{if(!p.id||usedIds.has(p.id))return false;usedIds.add(p.id);return true}):[];const c=state.store;
+ const kind=String(c.storeType||c.type||'retail')==='food'?'food':'retail';
+ const ids={retail:['minimal','modern','catalog','showcase'],food:['classic','cafe','premium','quick']};
+ const requestedTemplate=String(c.templates?.[kind]||c.template||'');
+ const validTemplate=ids[kind].includes(requestedTemplate)?requestedTemplate:ids[kind][0];
+ document.body.dataset.inposTemplate=kind+'-'+validTemplate;
+ const gradients={red:['#a40829','#e7334b'],blue:['#142c53','#2a5a91'],green:['#104b3c','#28745e'],purple:['#4a286d','#8d47a1'],dark:['#172334','#34465e']};
+ const chosen=['auto',...Object.keys(gradients)].includes(c.headerGradient)?c.headerGradient:'auto';
+ document.body.dataset.inposGradient=chosen;
+ document.body.style.setProperty('--wt760-start',(gradients[chosen]||gradients.red)[0]);
+ document.body.style.setProperty('--wt760-end',(gradients[chosen]||gradients.red)[1]);
+ c.storeType=kind;const isFood=kind==='food';
+ $('checkout').textContent=isFood?'Pesan menu melalui WhatsApp':'Pesan melalui WhatsApp';
+ $('search').placeholder=isFood?'Cari menu…':'Cari produk…';
+ document.querySelector('.control h2').textContent=isFood?'Daftar Menu':'Daftar Produk';
+ const accent=/^#[0-9a-f]{6}$/i.test(c.themeColor)?c.themeColor:'#d91d36';document.documentElement.style.setProperty('--accent',accent);window.inposWebTokoContrastV754?.();$('navStoreName').textContent=String(c.name||'Web Toko');$('storeName').textContent=String(c.name||'Web Toko');$('storeDescription').textContent=String(c.description||'Temukan produk pilihan dari toko kami.');$('footerStoreName').textContent=String(c.name||'INPOS');document.title=String(c.name||'Web Toko')+' — INPOS';$('addressLine').textContent=c.address?'⌖ '+String(c.address):'Katalog Online';$('statusText').textContent=c.showOrderButton===false?'Sedang tutup':'Siap menerima pesanan';$('statusDot').classList.toggle('off',c.showOrderButton===false);const cats=[...new Set(state.products.map(p=>p.category))].sort((a,b)=>a.localeCompare(b,'id'));$('category').replaceChildren(new Option('Semua kategori',''),...cats.map(x=>new Option(x,x)));state.cart=[];render();}
+ function render(){const query=$('search').value.trim().toLowerCase(),cat=$('category').value,list=state.products.filter(p=>(!cat||p.category===cat)&&(!query||(p.name+' '+p.category).toLowerCase().includes(query)));$('resultCount').textContent=list.length+(state.store.storeType==='food'?' menu':' produk');const grid=$('grid');grid.replaceChildren();if(!list.length){const box=document.createElement('div');box.className='empty';const noData=state.products.length===0;box.innerHTML='<div class="empty-icon">'+(noData?'🛒':'⌕')+'</div><strong>'+(noData?'Belum ada produk dipublikasikan':'Produk tidak ditemukan')+'</strong><p>'+(noData?'Katalog akan tampil setelah produk toko ini dipublikasikan.':'Coba kata kunci atau kategori yang lain.')+'</p>';grid.append(box);}for(const p of list){const card=document.createElement('article');card.className='product';const visual=document.createElement('div');visual.className='photo';if(p.image){const img=new Image();img.src=p.image;img.alt=p.name;img.loading='lazy';visual.append(img)}else{const fallback=document.createElement('span');fallback.className='placeholder';fallback.textContent=p.emoji||'📦';visual.append(fallback)}const desc=document.createElement('div');desc.className='desc';const category=document.createElement('div');category.className='category';category.textContent=p.category;const name=document.createElement('h3');name.textContent=p.name;const bottom=document.createElement('div');bottom.className='bottom';const price=document.createElement('div');price.className='price';price.textContent=p.price===null?'Tanya harga':currency(p.price);const unit=document.createElement('span');unit.className='unit';unit.textContent=' / '+p.unit;price.append(unit);const stock=document.createElement('div');stock.className='stock'+(!p.available?' out':'');stock.textContent=!p.available?'Stok habis':p.stock!==null?'Stok '+p.stock+' '+p.unit:'Tersedia';const btn=document.createElement('button');btn.type='button';btn.className='add';btn.textContent=!p.available?'Stok habis':'+ Keranjang';btn.disabled=!p.available||state.store.showOrderButton===false;btn.addEventListener('click',()=>add(p.id));bottom.append(price,stock,btn);desc.append(category,name,bottom);card.append(visual,desc);grid.append(card);}updateCart();}
+ function add(id){const p=state.products.find(x=>x.id===id);if(!p||!p.available)return;const entry=state.cart.find(x=>x.id===id);if(entry){if(p.stock!==null&&entry.qty>=p.stock)return;entry.qty++}else state.cart.push({id,qty:1});updateCart();}
+ function change(id,n){const item=state.cart.find(x=>x.id===id),p=state.products.find(x=>x.id===id);if(!item)return;item.qty+=n;if(p?.stock!==null&&item.qty>p.stock)item.qty=p.stock;if(item.qty<=0)state.cart=state.cart.filter(x=>x.id!==id);updateCart();}
+ function updateCart(){const count=state.cart.reduce((s,x)=>s+x.qty,0);$('count').textContent=count;$('mobileCart').hidden=count===0;$('mobileCart').textContent='Lihat Keranjang ('+count+')';$('openCart').setAttribute('aria-label','Buka keranjang, '+count+' item');const total=state.cart.reduce((s,x)=>{const p=state.products.find(p=>p.id===x.id);return s+(p?.price||0)*x.qty},0);const needsQuote=state.cart.some(x=>state.products.find(p=>p.id===x.id)?.price===null);$('cartTotal').textContent=currency(total)+(needsQuote?' + harga konfirmasi':'');const wrap=$('cartItems');wrap.replaceChildren();if(!state.cart.length){const p=document.createElement('p');p.className='hint';p.textContent='Keranjang masih kosong. Silakan pilih produk.';wrap.append(p)}for(const item of state.cart){const p=state.products.find(p=>p.id===item.id);if(!p)continue;const row=document.createElement('div');row.className='cart-item';const d=document.createElement('div'),nm=document.createElement('strong'),sm=document.createElement('small');nm.textContent=p.name;sm.textContent=(p.price===null?'Konfirmasi harga':currency(p.price))+' · '+p.unit;d.append(nm,sm);const qty=document.createElement('div');qty.className='qty';const minus=document.createElement('button');minus.type='button';minus.setAttribute('aria-label','Kurangi '+p.name);minus.textContent='−';minus.addEventListener('click',()=>change(p.id,-1));const num=document.createElement('span');num.textContent=item.qty;const plus=document.createElement('button');plus.type='button';plus.setAttribute('aria-label','Tambah '+p.name);plus.textContent='+';plus.disabled=p.stock!==null&&item.qty>=p.stock;plus.addEventListener('click',()=>change(p.id,1));qty.append(minus,num,plus);row.append(d,qty);wrap.append(row)}const wa=escapePhone(state.store.whatsapp);$('checkout').disabled=!state.cart.length||state.store.showOrderButton===false||!/^62\d{9,13}$/.test(wa);$('checkoutHint').textContent=!/^62\d{9,13}$/.test(wa)?'Nomor WhatsApp toko belum dikonfigurasi.':'Pesanan dikirim melalui WhatsApp; belum tercatat otomatis ke sistem Kasir.';}
+ let cartReturnFocus=null;function openCart(){cartReturnFocus=document.activeElement;const dlg=$('cartOverlay');dlg.hidden=false;document.body.style.overflow='hidden';$('closeCart').focus();}function closeCart(){$('cartOverlay').hidden=true;document.body.style.overflow='';if(cartReturnFocus&&cartReturnFocus.isConnected&&typeof cartReturnFocus.focus==='function')cartReturnFocus.focus();else $('openCart').focus();cartReturnFocus=null;}
+ $('openCart').addEventListener('click',openCart);$('mobileCart').addEventListener('click',openCart);$('closeCart').addEventListener('click',closeCart);$('cartOverlay').addEventListener('click',e=>{if(e.target===$('cartOverlay'))closeCart()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('cartOverlay').hidden)closeCart()});$('search').addEventListener('input',render);$('category').addEventListener('change',render);
+ $('checkout').addEventListener('click',()=>{const wa=escapePhone(state.store.whatsapp);if(!/^62\d{9,13}$/.test(wa))return;const body=['Halo, saya ingin memesan di *'+state.store.name+'*','',...state.cart.map((item,i)=>{const p=state.products.find(x=>x.id===item.id);return(i+1)+'. '+p.name+' × '+item.qty+' '+p.unit+' — '+(p.price===null?'Harga konfirmasi':currency(p.price*item.qty))}),'','Subtotal: '+$('cartTotal').textContent,'Mohon konfirmasi ketersediaan, ongkir, dan total akhir.'].join('\n');window.open('https://wa.me/'+wa+'?text='+encodeURIComponent(body),'_blank','noopener,noreferrer');});
+ $('year').textContent=String(new Date().getFullYear());
+ // Data katalog harus berasal dari toko yang sesuai slug URL. JANGAN gunakan katalog global
+ // atau localStorage toko lain untuk path /namatoko. Setelah migrasi, ganti fetch dengan
+ // GET https://api.inpos.id/public/stores/{slug}/catalog, diverifikasi tenant di server.
+ const emptyCatalog={store:{name:requestedSlug?'Toko '+requestedSlug:'Web Toko INPOS',whatsapp:''},products:[]};
+ async function loadPublicCatalog(){
+   if(hasInvalidShopPath){$('notice').hidden=false;$('notice').textContent='Alamat toko tidak valid.';mount(emptyCatalog);return;}
+   if(requestedSlug){
+     const url='/katalog/'+encodeURIComponent(requestedSlug)+'.json';
+     let data=null;
+     try{const response=await fetch(url,{cache:'no-store'});if(response.ok)data=await response.json()}catch(_){/* katalog belum dipublikasikan */}
+     // Owner data only from a slug-matched public file; prevent a misnamed catalog displaying other shops.
+     if(!data||String(data.slug||'').toLowerCase()!==requestedSlug)data=null;
+     mount(data||emptyCatalog);
+     if(!data){$('notice').hidden=false;$('notice').textContent='Katalog toko ini belum dipublikasikan. Data setiap toko akan tersedia melalui API INPOS setelah backend diaktifkan.';}
+     return;
+   }
+   // Halaman toko publik tanpa /namatoko tidak boleh menampilkan katalog global.
+   const previewHost=location.protocol==='file:'||/^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+   if(!previewHost){mount(emptyCatalog);$('notice').hidden=false;$('notice').textContent='Alamat toko belum lengkap. Buka toko.inpos.id/namatoko.';return;}
+   // Preview tanpa slug hanya di lingkungan pengembangan dengan HTML yang sama.
+   let pub=null;
+   try{const response=await fetch('./katalog.json',{cache:'no-store'});if(response.ok)pub=await response.json()}catch(_){/* pratinjau */}
+   const local=/^(localhost|127\.0\.0\.1)$/.test(location.hostname)?sourceLocal():null;
+   mount(local?.products?.length?local:(pub||emptyCatalog));
+   if(!state.products.length){$('notice').hidden=false;$('notice').textContent='Pratinjau: katalog belum memiliki produk. Web Toko per Owner memerlukan publikasi katalog berdasarkan nama URL toko.';}
+ }
+ loadPublicCatalog().catch(()=>{mount(emptyCatalog);$('notice').hidden=false;$('notice').textContent='Katalog sementara tidak dapat dimuat.';});
+})();
+</script>
+<script src="/assets/js/inpos-webtoko-contrast-v754.js?v=754"></script>
+</body>
+</html>

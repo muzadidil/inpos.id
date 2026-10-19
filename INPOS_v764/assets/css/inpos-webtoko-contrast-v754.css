@@ -1,0 +1,84 @@
+/* INPOS v754 — keterbacaan teks semua template Web Toko.
+   Memperbaiki kontras tanpa mengganti tema/warna identitas pilihan Mitra. */
+:root{--wt754-ink:#172334;--wt754-sub:#425269;--wt754-muted:#536276;--wt754-accent-text:#a21d32;--wt754-on-accent:#fff}
+/* Katalog online publik: Retail + Kuliner (8 tema) */
+body[data-inpos-template]{--wt754-ink:#172334;--wt754-sub:#425269;--wt754-muted:#536276;color:var(--wt754-ink)}
+body[data-inpos-template] .identity strong,
+body[data-inpos-template] .control h2,
+body[data-inpos-template] .product h3,
+body[data-inpos-template] .empty strong,
+body[data-inpos-template] .panel-head h2,
+body[data-inpos-template] .cart-item strong,
+body[data-inpos-template] .tot,
+body[data-inpos-template] .qty span{color:var(--wt754-ink)!important}
+body[data-inpos-template] .identity small,
+body[data-inpos-template] .control small,
+body[data-inpos-template] .product .category,
+body[data-inpos-template] .product .unit,
+body[data-inpos-template] .product .stock,
+body[data-inpos-template] .cart-item small,
+body[data-inpos-template] .hint,
+body[data-inpos-template] .footer,
+body[data-inpos-template] .empty p{color:var(--wt754-sub)!important}
+body[data-inpos-template] .search input,
+body[data-inpos-template] .filters select{color:var(--wt754-ink)!important}
+body[data-inpos-template] :is(input,textarea)::placeholder{color:#627187!important;opacity:1!important}
+body[data-inpos-template] .product .price,
+body[data-inpos-template] .tot b{color:var(--wt754-accent-text)!important}
+body[data-inpos-template] .product .stock.out{color:#9f1239!important;font-weight:750}
+body[data-inpos-template] .product .add:not(:disabled),
+body[data-inpos-template] .confirm:not(:disabled),
+body[data-inpos-template] .mini-cart:not(:disabled){color:var(--wt754-on-accent,#fff)!important}
+body[data-inpos-template] .product .add:disabled,
+body[data-inpos-template] .confirm:disabled{background:#e9edf2!important;border:1px solid #cbd5e1!important;color:#334155!important;opacity:1!important;text-shadow:none!important}
+body[data-inpos-template] .qty button,
+body[data-inpos-template] .icon-btn{color:#26364b!important}
+body[data-inpos-template] .notice{color:#8f1930!important}
+/* Hero terang & gelap mempertahankan karakternya, tetapi semua teks terbaca */
+body[data-inpos-template="retail-minimal"] .hero,
+body[data-inpos-template="retail-catalog"] .hero,
+body[data-inpos-template="food-classic"] .hero{color:var(--wt754-ink)!important}
+body[data-inpos-template="retail-minimal"] .hero :is(h1,p,.eyebrow,.info,.info span),
+body[data-inpos-template="retail-catalog"] .hero :is(h1,p,.eyebrow,.info,.info span),
+body[data-inpos-template="food-classic"] .hero :is(h1,p,.eyebrow,.info,.info span){color:var(--wt754-ink)!important;opacity:1!important}
+body[data-inpos-template="retail-modern"] .hero :is(h1,p,.eyebrow,.info,.info span),
+body[data-inpos-template="retail-showcase"] .hero :is(h1,p,.eyebrow,.info,.info span),
+body[data-inpos-template="food-cafe"] .hero :is(h1,p,.eyebrow,.info,.info span),
+body[data-inpos-template="food-quick"] .hero :is(h1,p,.eyebrow,.info,.info span){color:#fff!important;opacity:1!important}
+body[data-inpos-template="food-premium"] .hero :is(h1,p,.eyebrow,.info,.info span){color:#fff4db!important;opacity:1!important}
+/* Pratinjau pada aplikasi INPOS: pisahkan warna teks dari warna latar tombol */
+#screen-market-preview .market-preview-title b{color:#172334!important}
+#screen-market-preview .market-preview-title small,
+#screen-market-preview .market-browser-url{color:#44546a!important;opacity:1!important}
+#screen-market-preview .market-preview-toolbar .open-tab{color:#172334!important}
+#screen-market-preview #marketStorefrontPreview{--wt754-ink:#172334;--wt754-sub:#425269;--wt754-muted:#536276;color:var(--wt754-ink)!important}
+#screen-market-preview #marketStorefrontPreview .market-store-section-head>b{color:var(--wt754-ink)!important}
+#screen-market-preview #marketStorefrontPreview .market-store-section-head>small,
+#screen-market-preview #marketStorefrontPreview .market-store-footer{color:var(--wt754-sub)!important;opacity:1!important}
+#screen-market-preview #marketStorefrontPreview .market-store-search{color:var(--wt754-sub)!important}
+#screen-market-preview #marketStorefrontPreview .market-store-search input{color:var(--wt754-ink)!important;opacity:1!important}
+#screen-market-preview #marketStorefrontPreview .market-store-search input::placeholder{color:#5b6b7f!important;opacity:1!important}
+#screen-market-preview #marketStorefrontPreview #marketStoreProducts .market-store-product h4{color:var(--wt754-accent-text)!important}
+#screen-market-preview #marketStorefrontPreview #marketStoreProducts .market-store-product .price{color:var(--wt754-ink)!important}
+#screen-market-preview #marketStorefrontPreview #marketStoreProducts .market-store-product :is(.cat,.stock,.market-product-sold,.market-product-meta,.market-product-rating b){color:var(--wt754-sub)!important;opacity:1!important}
+#screen-market-preview #marketStorefrontPreview #marketStoreProducts .market-store-product .stock.out{color:#9f1239!important;font-weight:800!important}
+#screen-market-preview #marketStorefrontPreview #marketStoreProducts .market-product-favorite,
+#screen-market-preview #marketStorefrontPreview #marketStoreProducts .market-store-view-toggle button.active{color:var(--wt754-accent-text)!important}
+#screen-market-preview #marketStorefrontPreview .market-store-view-toggle button:not(.active){color:#425269!important}
+#screen-market-preview #marketStorefrontPreview #marketStoreProducts .market-product-order-btn:not(:disabled){color:var(--wt754-on-accent,#fff)!important}
+#screen-market-preview #marketStorefrontPreview #marketStoreProducts .market-product-order-btn:disabled{background:#e9edf2!important;border:1px solid #cbd5e1!important;color:#334155!important;opacity:1!important;text-shadow:none!important}
+#screen-market-preview #marketStorefrontPreview .market-store-hero > :is(h2,p,small){opacity:1!important}
+/* Tema pratinjau terang: cegah teks hero putih pada latar krem/putih */
+#screen-market-preview #marketStorefrontPreview:is(.inpos-tpl-retail-minimal,.inpos-tpl-retail-catalog,.inpos-tpl-food-classic) .market-store-hero :is(h2,p,small,.market-store-status){color:#192638!important;opacity:1!important}
+#screen-market-preview #marketStorefrontPreview:is(.inpos-tpl-retail-modern,.inpos-tpl-retail-showcase,.inpos-tpl-food-cafe,.inpos-tpl-food-quick) .market-store-hero :is(h2,p,small,.market-store-status){color:#fff!important;opacity:1!important}
+#screen-market-preview #marketStorefrontPreview.inpos-tpl-food-premium .market-store-hero :is(h2,p,small,.market-store-status){color:#fff2d6!important;opacity:1!important}
+/* Checkout / pemesanan pada pratinjau */
+#screen-market-preview #marketStorefrontPreview :is(.market-checkout,.market-order-summary,.market-cart-item,.market-order-total) :is(h3,h4,b,strong){color:var(--wt754-ink)!important}
+#screen-market-preview #marketStorefrontPreview :is(.market-checkout,.market-order-summary,.market-cart-item) :is(small,label,p){color:var(--wt754-sub)!important}
+/* Aksesibilitas: ketika browser mengaktifkan kontras lebih kuat */
+@media(prefers-contrast:more){body[data-inpos-template],#screen-market-preview #marketStorefrontPreview{--wt754-sub:#26364b;--wt754-muted:#334155}body[data-inpos-template] :is(input,textarea)::placeholder,#screen-market-preview #marketStorefrontPreview input::placeholder{color:#374151!important}}
+/* Warna latar oranye cerah: lapisan gelap menjaga rasio kontras teks putih. */
+body[data-inpos-template="retail-showcase"] .hero{background-image:linear-gradient(rgba(18,27,41,.55),rgba(18,27,41,.55)),linear-gradient(120deg,#bd4729,#fc975b)!important}
+body[data-inpos-template="food-quick"] .hero{background-image:linear-gradient(rgba(18,27,41,.55),rgba(18,27,41,.55)),linear-gradient(130deg,#f94c37,#ff9345)!important}
+#screen-market-preview #marketStorefrontPreview.inpos-tpl-retail-showcase .market-store-hero{background-image:linear-gradient(rgba(18,27,41,.55),rgba(18,27,41,.55)),linear-gradient(125deg,#c8512d,#ff9f69)!important}
+#screen-market-preview #marketStorefrontPreview.inpos-tpl-food-quick .market-store-hero{background-image:linear-gradient(rgba(18,27,41,.55),rgba(18,27,41,.55)),linear-gradient(135deg,#fb5436,#ff9c47)!important}
