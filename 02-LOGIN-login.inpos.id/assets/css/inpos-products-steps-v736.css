@@ -1,0 +1,18 @@
+/* INPOS v736: validasi form Produk & Stok tanpa navigasi langkah di bawah. */
+#screen-productform [aria-invalid="true"]{border-color:#dc2626!important;outline:1px solid #dc2626}
+
+/* v740: Semua navigasi/progres lama pada Produk & Stok disembunyikan. */
+#screen-productform #inposStepsBar736,
+#screen-productform .inpos-steps-progress,
+#screen-productform .product-step-progress,
+#screen-productform .mobile-product-step-progress,
+#screen-productform .product-form-step-progress,
+#screen-productform .inpos-wizard-progress,
+#screen-productform [data-product-step-progress]{display:none!important}
+
+/* v742: cegah kilatan panel navigasi lama, baik pada Tambah maupun Edit Produk. */
+#screen-productform #inposStepsBar736,
+#screen-productform .inpos-products-step-bar-v736,
+#screen-productform #inposStepsLabel736,
+#screen-productform #inposStepPrev736,
+#screen-productform #inposStepNext736{display:none!important}

@@ -1,0 +1,56 @@
+/* INPOS v762 — ticker header contiguous; no white band between moving text and store hero. */
+#marketStorefrontPreview .market-store-ticker,
+#marketStorefrontPreview .market-store-ticker + .market-store-hero{
+ margin:0!important;border:0!important;box-shadow:none!important;
+}
+#marketStorefrontPreview .market-store-ticker + .market-store-hero{margin-top:0!important;}
+body[data-inpos-template] > .ticker{display:block;margin:0!important;padding-bottom:0!important;border:0!important;box-shadow:none!important;}
+body[data-inpos-template] > .ticker + .catalog,
+body[data-inpos-template] > .ticker ~ .catalog{
+ display:block;margin-top:0!important;padding-top:0!important;border-top:0!important;
+}
+body[data-inpos-template] > .ticker + .catalog > .hero,
+body[data-inpos-template] > .ticker ~ .catalog > .hero{
+ margin-top:0!important;border-top:0!important;box-shadow:none!important;
+}
+body[data-inpos-template] > .ticker + header:empty{display:none!important;height:0!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;}
+body[data-inpos-template] > .ticker + header,
+body[data-inpos-template] > .ticker + header + .catalog{
+ margin-top:0!important;border-top:0!important;
+}
+/* Checkout steps in the hero must stay readable on all gradients. */
+body[data-inpos-template] .stepbar{display:flex!important;flex-wrap:wrap!important;gap:8px!important}
+body[data-inpos-template] .stepbar span{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ min-height:38px!important;padding:0 14px!important;border-radius:999px!important;
+ border:1px solid rgba(255,255,255,.30)!important;font-weight:850!important;
+ white-space:nowrap!important;text-shadow:none!important;
+}
+body[data-inpos-template] .stepbar span.active,
+body[data-inpos-template] .stepbar span.done{
+ background:#fff!important;color:var(--accent,#b51230)!important;border-color:rgba(255,255,255,.56)!important;
+}
+body[data-inpos-template] .stepbar span:not(.active):not(.done){
+ background:rgba(255,255,255,.12)!important;color:#fff!important;
+}
+/* Force List mode to one full-width card row. */
+body[data-inpos-template] .grid.view-list{grid-template-columns:1fr!important;gap:10px!important}
+body[data-inpos-template] .grid.view-list .card{
+ display:grid!important;grid-template-columns:96px minmax(0,1fr)!important;
+ grid-template-areas:"visual title" "visual price" "visual meta" "visual wholesale" "visual order"!important;
+ column-gap:10px!important;row-gap:2px!important;align-items:start!important;
+ width:100%!important;min-height:124px!important;padding:9px!important;min-width:0!important;max-width:none!important;
+}
+body[data-inpos-template] .grid.view-list .visual{grid-area:visual!important;width:96px!important;height:96px!important;align-self:start!important}
+body[data-inpos-template] .grid.view-list .card h3{grid-area:title!important;margin:1px 34px 2px 0!important;min-height:0!important;font-size:13.5px!important;-webkit-line-clamp:1!important}
+body[data-inpos-template] .grid.view-list .price{grid-area:price!important;margin:0!important;font-size:12.5px!important}
+body[data-inpos-template] .grid.view-list .meta{grid-area:meta!important;margin-top:2px!important}
+body[data-inpos-template] .grid.view-list .woffer{grid-area:wholesale!important;margin-top:3px!important}
+body[data-inpos-template] .grid.view-list .btn{grid-area:order!important;margin-top:5px!important;min-height:32px!important;height:32px!important;width:100%!important}
+body[data-inpos-template] .grid.view-list .fav{top:8px!important;right:8px!important}
+@media(max-width:390px){
+ body[data-inpos-template] .grid.view-list .card{grid-template-columns:82px minmax(0,1fr)!important;min-height:112px!important;column-gap:8px!important;padding:8px!important}
+ body[data-inpos-template] .grid.view-list .visual{width:82px!important;height:82px!important}
+ body[data-inpos-template] .grid.view-list .card h3{font-size:12.5px!important}
+ body[data-inpos-template] .grid.view-list .price{font-size:11.5px!important}
+}

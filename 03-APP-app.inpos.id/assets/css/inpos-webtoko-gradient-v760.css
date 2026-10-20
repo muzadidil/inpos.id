@@ -1,0 +1,45 @@
+/* INPOS v760 • Header gradient + readable text in 8 shop templates. */
+:root{--wt760-fg:#172334;--wt760-muted:#475569}
+body[data-inpos-template] :is(.control h2,.product h3,.product .price,.product .category,.product .stock){opacity:1!important}
+body[data-inpos-template] .control h2,body[data-inpos-template] .product h3{color:#172334!important}
+body[data-inpos-template] .product .price{color:#9f1239!important;font-weight:850}
+body[data-inpos-template] .product :is(.category,.stock,.market-product-sold){color:#475569!important}
+body[data-inpos-template] .filters input,body[data-inpos-template] .filters select{color:#172334!important;background:#fff!important}
+body[data-inpos-template] .filters input::placeholder{color:#64748b!important;opacity:1!important}
+body[data-inpos-template] .product .add:disabled{background:#e2e8f0!important;color:#334155!important;border:1px solid #cbd5e1!important;opacity:1!important}
+body[data-inpos-template] .footer{color:#475569!important}
+/* Explicit choice overrides legacy v735-v759 !important backgrounds. */
+body[data-inpos-template][data-inpos-gradient]:not([data-inpos-gradient="auto"]) .hero{
+  background:linear-gradient(125deg,var(--wt760-start,#a40829),var(--wt760-end,#e7334b))!important;
+  color:#fff!important;border-bottom:0!important
+}
+body[data-inpos-template][data-inpos-gradient]:not([data-inpos-gradient="auto"]) .hero :is(h1,h2,p,.info,.eyebrow,.status,.stepbar span){color:#fff!important;opacity:1!important}
+body[data-inpos-template][data-inpos-gradient]:not([data-inpos-gradient="auto"]) header{
+  background:linear-gradient(125deg,var(--wt760-start,#a40829),var(--wt760-end,#e7334b))!important;
+  border-bottom:1px solid rgba(255,255,255,.2)!important
+}
+body[data-inpos-template][data-inpos-gradient]:not([data-inpos-gradient="auto"]) header :is(.identity strong,.identity small,.outline,.outline b){color:#fff!important;opacity:1!important}
+body[data-inpos-template][data-inpos-gradient]:not([data-inpos-gradient="auto"]) header .outline{border:1px solid rgba(255,255,255,.55)!important;background:rgba(0,0,0,.12)!important}
+body[data-inpos-template] header .identity img{background:#fff;border-radius:11px}
+/* Keep the same colors in the owner preview. */
+#marketStorefrontPreview[data-inpos-gradient]:not([data-inpos-gradient="auto"]) .market-store-hero{
+  background:linear-gradient(125deg,var(--wt760-start,#a40829),var(--wt760-end,#e7334b))!important;
+  color:#fff!important;border-bottom:0!important
+}
+#marketStorefrontPreview[data-inpos-gradient]:not([data-inpos-gradient="auto"]) .market-store-hero :is(h2,p,small,.market-store-status){color:#fff!important;opacity:1!important}
+#screen-market-preview #marketStorefrontPreview .market-store-search{background:#fff!important;border-color:#dce3ed!important}
+#screen-market-preview #marketStorefrontPreview .market-store-search input{color:#172334!important;opacity:1!important}
+#screen-market-preview #marketStorefrontPreview .market-store-search input::placeholder{color:#64748b!important;opacity:1!important}
+#screen-market-preview #marketStorefrontPreview .market-store-product :is(h4,.market-store-price){color:#172334!important;opacity:1!important}
+#screen-market-preview #marketStorefrontPreview .market-store-product :is(small,.market-store-meta){color:#475569!important;opacity:1!important}
+/* Owner gradient selector */
+#screen-market-online .market-gradient-panel-v760{margin-top:12px;padding:13px;border:1px solid #dbe2ea;border-radius:14px;background:#fff;min-width:0}
+#screen-market-online .market-gradient-panel-v760>strong{display:block;font-size:13px;color:#172334;margin:0 0 4px}
+#screen-market-online .market-gradient-panel-v760>p{font-size:11px;color:#475569;margin:0 0 11px;line-height:1.45}
+#screen-market-online .market-gradient-grid-v760{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#screen-market-online .market-gradient-button-v760{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:72px;padding:8px 6px;border:1px solid #dbe2ea;border-radius:11px;background:#fff;color:#263648;font-size:11px;font-weight:750;text-align:center;min-width:0;cursor:pointer}
+#screen-market-online .market-gradient-button-v760[aria-pressed="true"]{border:2px solid #ba1538;box-shadow:0 0 0 2px rgba(186,21,56,.1);background:#fff9fa;color:#94132b}
+#screen-market-online .market-gradient-swatch-v760{display:block;width:100%;max-width:86px;height:22px;border:1px solid rgba(0,0,0,.09);border-radius:8px;background:linear-gradient(120deg,var(--grad-start,#a40829),var(--grad-end,#e7334b))}
+#screen-market-online .market-gradient-button-v760[data-grad="auto"] .market-gradient-swatch-v760{background:linear-gradient(115deg,#be123c 0 32%,#1d4f91 32% 65%,#166534 65%)}
+@media(max-width:350px){#screen-market-online .market-gradient-grid-v760{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){#screen-market-online .market-gradient-button-v760{transition:none}}

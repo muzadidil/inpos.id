@@ -1,0 +1,7 @@
+Options -Indexes
+DirectoryIndex index.html
+RewriteEngine On
+RewriteRule ^([A-Za-z0-9]{7,11})/?$ referral.php [L,QSA]
+<FilesMatch "^(?:README.*|.*\.md)$">
+  Require all denied
+</FilesMatch>

@@ -1,0 +1,145 @@
+/* INPOS v753 - Penyempurnaan 8 template Web Toko. Hanya mengubah tampilan. */
+body[data-inpos-template]{
+  --store-radius:16px;
+  --store-elev:0 5px 22px rgba(21,31,48,.055);
+  text-rendering:optimizeLegibility;
+  overflow-x:clip;
+}
+body[data-inpos-template] .container{max-width:1200px}
+body[data-inpos-template] header{box-shadow:0 2px 14px rgba(19,28,43,.035)}
+body[data-inpos-template] .nav{min-width:0}
+body[data-inpos-template] .identity{flex:1 1 auto;max-width:calc(100% - 128px)}
+body[data-inpos-template] .identity strong{max-width:100%;line-height:1.3}
+body[data-inpos-template] .outline{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:42px;flex-shrink:0}
+body[data-inpos-template] .hero-inner{min-width:0}
+body[data-inpos-template] .hero-inner>div:first-child{min-width:0}
+body[data-inpos-template] .hero h1{font-weight:850;letter-spacing:-.035em;text-wrap:balance}
+body[data-inpos-template] .hero p{font-size:14px;line-height:1.62;overflow-wrap:anywhere}
+body[data-inpos-template] .eyebrow{max-width:100%;overflow-wrap:anywhere}
+body[data-inpos-template] .info{align-items:center;line-height:1.45}
+body[data-inpos-template] .catalog{min-width:0}
+body[data-inpos-template] .control{align-items:center;gap:14px}
+body[data-inpos-template] .control>div:first-child{min-width:0}
+body[data-inpos-template] .control h2{font-size:20px;font-weight:850}
+body[data-inpos-template] .filters{min-width:0}
+body[data-inpos-template] .search{min-width:0}
+body[data-inpos-template] .search input,body[data-inpos-template] .filters select{min-height:44px;font-size:13px;border-color:#dfe3ea;box-shadow:0 1px 2px rgba(16,24,40,.02)}
+body[data-inpos-template] .search input:focus,body[data-inpos-template] .filters select:focus{border-color:var(--accent);outline:2px solid color-mix(in srgb,var(--accent) 13%,transparent);outline-offset:0}
+body[data-inpos-template] .grid{align-items:stretch}
+body[data-inpos-template] .product{min-width:0;height:100%;border-radius:var(--store-radius);box-shadow:var(--store-elev);transition:transform .16s ease,box-shadow .16s ease}
+body[data-inpos-template] .product .photo{position:relative;min-width:0;overflow:hidden}
+body[data-inpos-template] .product .photo img{display:block;max-width:100%;object-position:center;transition:transform .25s ease}
+body[data-inpos-template] .product .desc{min-width:0;gap:0}
+body[data-inpos-template] .product h3{font-weight:750;line-height:1.4;overflow-wrap:anywhere}
+body[data-inpos-template] .product .category{font-weight:650;letter-spacing:.01em}
+body[data-inpos-template] .product .price{overflow-wrap:anywhere;line-height:1.35}
+body[data-inpos-template] .product .stock{min-height:16px;line-height:1.5}
+body[data-inpos-template] .product .add{min-height:42px;line-height:1.2;padding:8px 10px;border-radius:11px;touch-action:manipulation}
+body[data-inpos-template] .product .add:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 32%,transparent)}
+body[data-inpos-template] .panel{max-width:100%;min-width:0}
+body[data-inpos-template] .cart-item{min-width:0;align-items:center}
+body[data-inpos-template] .cart-item>div:first-child{min-width:0;flex:1}
+body[data-inpos-template] .cart-item strong{overflow-wrap:anywhere}
+body[data-inpos-template] .qty{gap:5px}
+body[data-inpos-template] .qty button{width:36px;height:36px;touch-action:manipulation}
+body[data-inpos-template] .cart-footer{flex-shrink:0}
+body[data-inpos-template] .confirm{min-height:48px;touch-action:manipulation}
+body[data-inpos-template] .mini-cart{min-height:50px;touch-action:manipulation}
+body[data-inpos-template] .notice{overflow-wrap:anywhere}
+/* Retail: Minimal, Modern, Katalog, Etalase */
+body[data-inpos-template="retail-minimal"]{--store-radius:10px;--store-elev:none}
+body[data-inpos-template="retail-minimal"] .hero{background:#fff!important}
+body[data-inpos-template="retail-minimal"] .product{border:1px solid #e5e9ee!important}
+body[data-inpos-template="retail-modern"]{--store-radius:20px;--store-elev:0 9px 28px rgba(29,45,70,.09)}
+body[data-inpos-template="retail-modern"] .hero{background:linear-gradient(125deg,#1c2a40 0%,#394966 100%)!important}
+body[data-inpos-template="retail-modern"] .photo{background:#f1f4f8}
+body[data-inpos-template="retail-modern"] .product{border-color:#e1e7f0!important}
+body[data-inpos-template="retail-catalog"]{--store-radius:12px;--store-elev:none}
+body[data-inpos-template="retail-catalog"] .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px}
+body[data-inpos-template="retail-catalog"] .product{display:grid!important;grid-template-columns:112px minmax(0,1fr)!important;align-items:stretch!important;gap:0!important;padding:8px!important;min-height:130px;border:1px solid #e1e7ef!important}
+body[data-inpos-template="retail-catalog"] .photo{grid-row:auto!important;grid-column:1!important;width:112px!important;height:112px!important;align-self:center;aspect-ratio:1!important;background:#f2f5f9}
+body[data-inpos-template="retail-catalog"] .desc{grid-column:2!important;padding:5px 5px 5px 13px!important}
+body[data-inpos-template="retail-catalog"] .product h3{min-height:0;margin:4px 0 8px}
+body[data-inpos-template="retail-catalog"] .product .add{margin-top:7px}
+body[data-inpos-template="retail-showcase"]{--store-radius:22px;--store-elev:0 11px 32px rgba(151,68,36,.105)}
+body[data-inpos-template="retail-showcase"] .grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:18px!important}
+body[data-inpos-template="retail-showcase"] .photo{aspect-ratio:1.3!important;background:#ffe8d5}
+body[data-inpos-template="retail-showcase"] .photo img{object-fit:cover}
+/* Kuliner: Klasik, Kafe Modern, Resto Premium, Menu Cepat */
+body[data-inpos-template="food-classic"]{--store-radius:13px;--store-elev:0 3px 14px rgba(102,72,37,.07)}
+body[data-inpos-template="food-classic"] .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px}
+body[data-inpos-template="food-classic"] .product{display:grid!important;grid-template-columns:112px minmax(0,1fr)!important;gap:0!important;align-items:stretch!important;padding:8px!important;min-height:130px}
+body[data-inpos-template="food-classic"] .photo{grid-column:1!important;grid-row:auto!important;width:112px!important;height:112px!important;aspect-ratio:1!important;align-self:center;background:#f2e9d8}
+body[data-inpos-template="food-classic"] .desc{grid-column:2!important;padding:5px 5px 5px 13px!important}
+body[data-inpos-template="food-classic"] .product h3{min-height:0;margin:4px 0 8px}
+body[data-inpos-template="food-cafe"]{--store-radius:18px;--store-elev:0 9px 26px rgba(72,50,35,.085)}
+body[data-inpos-template="food-cafe"] .grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+body[data-inpos-template="food-cafe"] .photo{background:#e8d6c4;aspect-ratio:1.2}
+body[data-inpos-template="food-cafe"] .photo img{object-fit:cover}
+body[data-inpos-template="food-premium"]{--store-radius:19px;--store-elev:0 8px 24px rgba(24,61,48,.07)}
+body[data-inpos-template="food-premium"] .grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+body[data-inpos-template="food-premium"] .photo{aspect-ratio:1.25;background:#f2f0e5}
+body[data-inpos-template="food-premium"] .photo img{object-fit:cover}
+body[data-inpos-template="food-quick"]{--store-radius:13px;--store-elev:none}
+body[data-inpos-template="food-quick"] .grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important}
+body[data-inpos-template="food-quick"] .photo{aspect-ratio:1.35;background:#fff3e9}
+body[data-inpos-template="food-quick"] .product .add{border-radius:9px}
+@media(hover:hover) and (pointer:fine){body[data-inpos-template] .product:hover{transform:translateY(-2px);box-shadow:0 13px 30px rgba(26,36,54,.12)}body[data-inpos-template] .product:hover .photo img{transform:scale(1.035)}}
+@media(max-width:920px){
+ body[data-inpos-template="retail-catalog"] .grid,body[data-inpos-template="food-classic"] .grid{grid-template-columns:1fr!important}
+ body[data-inpos-template="retail-showcase"] .grid,body[data-inpos-template="food-cafe"] .grid,body[data-inpos-template="food-premium"] .grid,body[data-inpos-template="food-quick"] .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:620px){
+ body[data-inpos-template] .container{width:calc(100% - 28px)}
+ body[data-inpos-template] .nav{min-height:62px}
+ body[data-inpos-template] .identity{max-width:calc(100% - 112px)}
+ body[data-inpos-template] .outline{padding-inline:10px;min-height:40px}
+ body[data-inpos-template] .hero-inner{padding:24px 0!important}
+ body[data-inpos-template] .hero h1{font-size:clamp(24px,7vw,30px);line-height:1.19;letter-spacing:-.7px}
+ body[data-inpos-template] .hero p{font-size:12px;line-height:1.6}
+ body[data-inpos-template] .catalog{padding-top:20px;padding-bottom:calc(95px + env(safe-area-inset-bottom,0px))}
+ body[data-inpos-template] .control{display:grid;grid-template-columns:1fr;gap:12px}
+ body[data-inpos-template] .control h2{font-size:17px}
+ body[data-inpos-template] .filters{width:100%;gap:8px}
+ body[data-inpos-template] .filters select{width:min(42vw,150px)}
+ body[data-inpos-template] .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ body[data-inpos-template] .product{border-radius:14px}
+ body[data-inpos-template] .product .desc{padding:11px}
+ body[data-inpos-template] .product .category{font-size:10px}
+ body[data-inpos-template] .product h3{font-size:12px;min-height:34px;margin-bottom:8px}
+ body[data-inpos-template] .product .price{font-size:13.5px}
+ body[data-inpos-template] .product .stock{font-size:10px}
+ body[data-inpos-template] .product .add{min-height:42px;font-size:11.5px}
+ body[data-inpos-template="retail-catalog"] .grid,body[data-inpos-template="food-classic"] .grid{grid-template-columns:1fr!important}
+ body[data-inpos-template="retail-catalog"] .product,body[data-inpos-template="food-classic"] .product{grid-template-columns:94px minmax(0,1fr)!important;min-height:114px!important;padding:8px!important}
+ body[data-inpos-template="retail-catalog"] .photo,body[data-inpos-template="food-classic"] .photo{width:94px!important;height:94px!important}
+ body[data-inpos-template="retail-catalog"] .desc,body[data-inpos-template="food-classic"] .desc{padding:3px 4px 3px 11px!important}
+ body[data-inpos-template="retail-catalog"] .product h3,body[data-inpos-template="food-classic"] .product h3{min-height:0;margin:3px 0 6px}
+ body[data-inpos-template="retail-catalog"] .product .add,body[data-inpos-template="food-classic"] .product .add{min-height:36px;margin-top:5px}
+ body[data-inpos-template="retail-showcase"] .grid,body[data-inpos-template="food-cafe"] .grid,body[data-inpos-template="food-premium"] .grid,body[data-inpos-template="food-quick"] .grid{gap:10px!important}
+ body[data-inpos-template] .panel-head{padding:15px 16px}
+ body[data-inpos-template] .items{padding:10px 16px}
+ body[data-inpos-template] .cart-footer{padding:14px 16px calc(16px + env(safe-area-inset-bottom,0px))}
+ body[data-inpos-template] .mini-cart{left:14px;right:14px;bottom:calc(12px + env(safe-area-inset-bottom,0px));border-radius:13px}
+}
+@media(max-width:360px){
+ body[data-inpos-template] .container{width:calc(100% - 22px)}
+ body[data-inpos-template] .grid{gap:8px}
+ body[data-inpos-template] .product .desc{padding:9px}
+ body[data-inpos-template] .price{font-size:12.5px}
+ body[data-inpos-template="retail-catalog"] .product,body[data-inpos-template="food-classic"] .product{grid-template-columns:82px minmax(0,1fr)!important}
+ body[data-inpos-template="retail-catalog"] .photo,body[data-inpos-template="food-classic"] .photo{width:82px!important;height:82px!important}
+ body[data-inpos-template="retail-catalog"] .desc,body[data-inpos-template="food-classic"] .desc{padding:2px 3px 2px 9px!important}
+ body[data-inpos-template] .qty button{height:34px;width:34px}
+}
+/* Tampilan pemilih template dalam Aplikasi INPOS, tanpa mengubah data / fungsi. */
+#screen-market-online .inpos-template-panel{border-radius:15px}
+#screen-market-online .inpos-template-choice{padding:7px;gap:5px;border-radius:12px;overflow:hidden}
+#screen-market-online .inpos-template-thumb{height:78px;border-radius:9px;padding:7px;gap:4px}
+#screen-market-online .inpos-template-thumb:before{height:22px}
+#screen-market-online .inpos-template-choice[aria-pressed="true"]{background:color-mix(in srgb,var(--primary,#d91d36) 5%,white)}
+#screen-market-online .inpos-template-name{line-height:1.25}
+#marketStorefrontPreview .market-store-product{min-width:0;overflow:hidden}
+#marketStorefrontPreview .market-store-product h4{overflow-wrap:anywhere}
+@media(max-width:620px){#screen-market-online .inpos-template-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}#screen-market-online .inpos-template-thumb{height:69px}}
+@media(prefers-reduced-motion:reduce){body[data-inpos-template] .product,body[data-inpos-template] .photo img{transition:none!important;transform:none!important}}

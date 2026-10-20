@@ -1,0 +1,76 @@
+/* INPOS v761 — final cascade: 8 templates Retail/Kuliner (public, owner preview, exported HTML). */
+body[data-inpos-template]{--wt761-ink:#172334;--wt761-muted:#475569;overflow-wrap:break-word}
+body[data-inpos-template] :is(.control h2,.product h3,.product .price,.product .category,.product .stock){opacity:1!important}
+body[data-inpos-template] .control h2,body[data-inpos-template] .product h3{color:var(--wt761-ink)!important}
+body[data-inpos-template] .product .price{color:#97152d!important;font-weight:850}
+body[data-inpos-template] :is(.product .stock,.product .category,.footer,.control small){color:var(--wt761-muted)!important}
+body[data-inpos-template] .product .stock.out{color:#9a2639!important}
+body[data-inpos-template] .product .desc,body[data-inpos-template] .product .bottom{min-width:0}
+body[data-inpos-template] .product .price,body[data-inpos-template] .product h3{overflow-wrap:anywhere}
+body[data-inpos-template] .product .unit{font-weight:500;color:#526176!important;font-size:.82em}
+body[data-inpos-template] .product .add:disabled{background:#e2e8f0!important;color:#334155!important;border:1px solid #cbd5e1!important;box-shadow:none!important;opacity:1!important}
+body[data-inpos-template] .product .add:focus-visible,body[data-inpos-template] :is(.filters input,.filters select):focus-visible{outline:3px solid rgba(190,27,57,.28);outline-offset:2px}
+body[data-inpos-template] .filters input::placeholder{color:#64748b!important;opacity:1!important}
+body[data-inpos-template] .filters :is(input,select){color:#172334!important;background:#fff!important}
+body[data-inpos-template] :is(.hero h1,.hero p,.hero .info,.hero .eyebrow,.hero .info span){opacity:1!important}
+body[data-inpos-template] header .identity img{object-fit:contain}
+/* Default Retail: merchandise tiles; Default Kuliner: menu cards horizontally composed.
+   Shared red identity and independent category/product presentation. */
+body[data-inpos-template="retail-minimal"] .grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:13px!important}
+body[data-inpos-template="retail-minimal"] .product{border:1px solid #eadce0!important;border-radius:15px!important}
+body[data-inpos-template="retail-minimal"] .photo{aspect-ratio:1.1!important}
+body[data-inpos-template="food-classic"] .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:13px!important}
+body[data-inpos-template="food-classic"] .product{display:grid!important;grid-template-columns:116px minmax(0,1fr)!important;gap:10px!important;min-height:140px!important;padding:10px!important;border:1px solid #efdde0!important;border-radius:16px!important;box-shadow:0 4px 15px rgba(150,24,51,.055)!important;align-items:stretch!important}
+body[data-inpos-template="food-classic"] .photo{grid-column:1!important;width:116px!important;height:116px!important;aspect-ratio:1!important;border-radius:10px!important;align-self:center!important;margin:0!important}
+body[data-inpos-template="food-classic"] .desc{grid-column:2!important;padding:3px!important;justify-content:center}
+body[data-inpos-template="food-classic"] .product h3{min-height:0!important}
+/* Resmi: strict cards and structured category; styling differs by industry. */
+body[data-inpos-template="retail-modern"] .product,body[data-inpos-template="food-premium"] .product{border-radius:11px!important;box-shadow:0 4px 13px rgba(22,42,62,.065)!important}
+body[data-inpos-template="retail-modern"] .category{font-weight:750;letter-spacing:.025em}
+body[data-inpos-template="food-premium"] .category{font-weight:750;color:#285b47!important;letter-spacing:.04em}
+body[data-inpos-template="food-premium"] .photo{background:#eef5ee!important}
+/* Estetik: spacious, image-first, warm vs rose palette. */
+body[data-inpos-template="retail-showcase"] .product,body[data-inpos-template="food-cafe"] .product{border-radius:22px!important;overflow:hidden!important}
+body[data-inpos-template="retail-showcase"] .photo,body[data-inpos-template="food-cafe"] .photo{aspect-ratio:1.35!important}
+body[data-inpos-template="retail-showcase"] .desc,body[data-inpos-template="food-cafe"] .desc{padding:15px!important}
+body[data-inpos-template="food-cafe"] .product{background:#fffaf5!important;border:1px solid #e9dccc!important}
+/* Compact: unambiguous left thumbnail + right content across viewport sizes. */
+body[data-inpos-template="retail-catalog"] .grid,body[data-inpos-template="food-quick"] .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+body[data-inpos-template="retail-catalog"] .product,body[data-inpos-template="food-quick"] .product{display:grid!important;grid-template-columns:90px minmax(0,1fr)!important;gap:9px!important;align-items:stretch!important;min-height:110px!important;padding:8px!important;border-radius:11px!important;box-shadow:none!important}
+body[data-inpos-template="retail-catalog"] .photo,body[data-inpos-template="food-quick"] .photo{grid-column:1!important;width:90px!important;height:90px!important;aspect-ratio:1!important;align-self:center!important;border-radius:8px!important}
+body[data-inpos-template="retail-catalog"] .desc,body[data-inpos-template="food-quick"] .desc{grid-column:2!important;padding:0!important;justify-content:center}
+body[data-inpos-template="retail-catalog"] .product h3,body[data-inpos-template="food-quick"] .product h3{min-height:0!important;margin:3px 0 5px!important}
+body[data-inpos-template="retail-catalog"] .add,body[data-inpos-template="food-quick"] .add{min-height:34px!important;margin-top:5px!important}
+/* Explicit gradient always wins over legacy backgrounds. Auto uses each template's own palette. */
+body[data-inpos-template][data-inpos-gradient]:not([data-inpos-gradient="auto"]) :is(.hero,header){background:linear-gradient(125deg,var(--wt760-start,#a40829),var(--wt760-end,#e7334b))!important;color:#fff!important}
+body[data-inpos-template][data-inpos-gradient]:not([data-inpos-gradient="auto"]) .hero :is(h1,h2,p,span,.eyebrow,.info),body[data-inpos-template][data-inpos-gradient]:not([data-inpos-gradient="auto"]) header :is(.identity strong,.identity small,.outline,.outline b){color:#fff!important;opacity:1!important}
+/* Default template must stay INPOS red while gradient selection auto is used. */
+body[data-inpos-template="food-classic"][data-inpos-gradient="auto"] header,body[data-inpos-template="retail-minimal"][data-inpos-gradient="auto"] header{background:#cb1234!important}
+body[data-inpos-template="food-classic"][data-inpos-gradient="auto"] header :is(.identity strong,.identity small,.outline,.outline b),body[data-inpos-template="retail-minimal"][data-inpos-gradient="auto"] header :is(.identity strong,.identity small,.outline,.outline b){color:#fff!important}
+/* Owner preview: match new visual rhythm and font contrast. */
+#screen-market-preview #marketStorefrontPreview .market-store-product :is(h4,.market-store-price){color:#172334!important;opacity:1!important}
+#screen-market-preview #marketStorefrontPreview .market-store-product :is(small,.market-store-meta){color:#475569!important;opacity:1!important}
+#screen-market-preview #marketStorefrontPreview:is(.inpos-tpl-food-classic) #marketStoreProducts{grid-template-columns:1fr!important;gap:10px!important}
+#screen-market-preview #marketStorefrontPreview.inpos-tpl-food-classic .market-store-product{display:grid!important;grid-template-columns:98px minmax(0,1fr)!important;gap:8px 11px!important;padding:9px!important;min-height:117px!important;align-items:center!important}
+#screen-market-preview #marketStorefrontPreview.inpos-tpl-food-classic .market-store-visual{grid-column:1!important;grid-row:1 / span 8!important;width:98px!important;height:98px!important;min-height:98px!important;aspect-ratio:1!important;border-radius:10px!important}
+#screen-market-preview #marketStorefrontPreview.inpos-tpl-food-classic .market-store-product h4{min-height:0!important}
+#screen-market-preview #marketStorefrontPreview[data-inpos-gradient]:not([data-inpos-gradient="auto"]) .market-store-hero{background:linear-gradient(125deg,var(--wt760-start,#a40829),var(--wt760-end,#e7334b))!important;color:#fff!important}
+#screen-market-preview #marketStorefrontPreview[data-inpos-gradient]:not([data-inpos-gradient="auto"]) .market-store-hero :is(h2,p,small,.market-store-status){color:#fff!important;opacity:1!important}
+/* Readable compact cards and responsive layout. */
+@media(max-width:920px){body[data-inpos-template="retail-minimal"] .grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:620px){
+ body[data-inpos-template="retail-minimal"] .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+ body[data-inpos-template="food-classic"] .grid,body[data-inpos-template="retail-catalog"] .grid,body[data-inpos-template="food-quick"] .grid{grid-template-columns:1fr!important}
+ body[data-inpos-template="food-classic"] .product{grid-template-columns:96px minmax(0,1fr)!important;min-height:116px!important;padding:8px!important}
+ body[data-inpos-template="food-classic"] .photo{width:96px!important;height:96px!important}
+ body[data-inpos-template="retail-catalog"] .product,body[data-inpos-template="food-quick"] .product{grid-template-columns:82px minmax(0,1fr)!important;min-height:101px!important;padding:7px!important}
+ body[data-inpos-template="retail-catalog"] .photo,body[data-inpos-template="food-quick"] .photo{width:82px!important;height:82px!important}
+ #screen-market-preview #marketStorefrontPreview.inpos-tpl-food-classic .market-store-product{grid-template-columns:82px minmax(0,1fr)!important;min-height:101px!important}
+ #screen-market-preview #marketStorefrontPreview.inpos-tpl-food-classic .market-store-visual{width:82px!important;height:82px!important;min-height:82px!important}
+}
+@media(max-width:360px){
+ body[data-inpos-template="food-classic"] .product{grid-template-columns:76px minmax(0,1fr)!important}
+ body[data-inpos-template="food-classic"] .photo{width:76px!important;height:76px!important}
+ body[data-inpos-template="retail-catalog"] .product,body[data-inpos-template="food-quick"] .product{grid-template-columns:74px minmax(0,1fr)!important}
+ body[data-inpos-template="retail-catalog"] .photo,body[data-inpos-template="food-quick"] .photo{width:74px!important;height:74px!important}
+}
