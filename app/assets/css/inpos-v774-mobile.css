@@ -1,0 +1,62 @@
+/* INPOS v774: mobile printer action dock and Android safe-area theme. */
+@media screen and (max-width:599px) {
+  :root { --inpos-printer-nav-height:var(--native-bottom, calc(70px + var(--safe-b,0px))); }
+  body[data-mobile-screen="printer"] #inposPrinterActionDock {
+    display:grid !important;
+    position:fixed !important;
+    left:50% !important;
+    transform:translateX(-50%) !important;
+    right:auto !important;
+    bottom:var(--inpos-printer-nav-height) !important;
+    width:100% !important;
+    max-width:var(--native-app-max,860px) !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:7px !important;
+    padding:9px 10px 8px !important;
+    margin:0 !important;
+    background:var(--surface,#fff) !important;
+    border-top:1px solid var(--line,#e5e5e5) !important;
+    box-shadow:0 -4px 14px rgba(0,0,0,.06) !important;
+    z-index:90 !important;
+    box-sizing:border-box !important;
+  }
+  body:not([data-mobile-screen="printer"]) #inposPrinterActionDock {display:none !important;}
+  body.mobile-keyboard-open #inposPrinterActionDock {display:none !important;}
+  #inposPrinterActionDock .btn {
+    display:flex !important; align-items:center !important; justify-content:center !important;
+    width:100% !important; min-width:0 !important; min-height:45px !important;
+    padding:8px 4px !important; white-space:normal !important;
+    font-size:11px !important; line-height:1.2 !important;
+    text-align:center !important; border-radius:10px !important;
+  }
+  body[data-mobile-screen="printer"] #screen-printer.active .printer-setting-body {
+    padding-bottom:92px !important;
+    scroll-padding-bottom:92px !important;
+  }
+  /* Light mode: paint the edge-to-edge safe strip above the app header red. */
+  html:not([data-theme="dark"]) body::before {
+    content:""; position:fixed; z-index:79; pointer-events:none;
+    top:0; left:0; right:0;
+    height:env(safe-area-inset-top,0px);
+    background:#e11d2e;
+  }
+  html[data-theme="dark"] body::before {background:#141619;}
+}
+
+/* INPOS v775: tablet portrait safe dashboard scroll without an overlay/gap above bottom nav. */
+@media screen and (min-width:600px) and (max-width:1024px) and (orientation:portrait){
+ html.inpos-tablet-portrait-v775 body.mobile-dashboard-active .main > .container {
+  height:var(--inpos-tablet-dashboard-height)!important;
+  max-height:var(--inpos-tablet-dashboard-height)!important;
+  min-height:0!important;overflow:hidden!important;padding-bottom:0!important;
+ }
+ html.inpos-tablet-portrait-v775 body.mobile-dashboard-active #screen-dashboard.active {
+  height:100%!important;max-height:100%!important;min-height:0!important;
+  overflow-x:hidden!important;overflow-y:auto!important;
+  padding-bottom:12px!important;scroll-padding-bottom:12px!important;
+  -webkit-overflow-scrolling:touch!important;
+ }
+ html.inpos-tablet-portrait-v775 body.mobile-dashboard-active #mobileHuffaadzHome {
+  margin-bottom:0!important;padding-bottom:10px!important;
+ }
+}

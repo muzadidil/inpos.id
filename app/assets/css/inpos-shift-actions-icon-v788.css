@@ -1,0 +1,77 @@
+/* INPOS APP v788 — Riwayat Shift Kasir: tombol cetak & Share PNG sejajar.
+   Terbatas pada tabel #shiftTable: tidak mengubah cetak/share dan menu lain. */
+@media screen {
+  #screen-shift #shiftTable td.shift-print-cell {
+    display: flex !important;
+    flex-flow: row nowrap !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 8px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: 42px !important;
+    max-height: 46px !important;
+    border: 0 !important;
+    text-align: right !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+  }
+  #screen-shift #shiftTable td.shift-print-cell::before {
+    display: none !important;
+    content: none !important;
+  }
+  #screen-shift #shiftTable td.shift-print-cell > :is(button.shift-print-btn, button.shift-share-btn-v114) {
+    display: inline-flex !important;
+    flex: 0 0 42px !important;
+    width: 42px !important;
+    min-width: 42px !important;
+    max-width: 42px !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    max-height: 42px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0 !important;
+    border-radius: 11px !important;
+    border: 1px solid var(--line, #ead4d7) !important;
+    background: var(--surface, #fff) !important;
+    color: var(--primary-deep, #aa1330) !important;
+    font-size: 0 !important;
+    line-height: 1 !important;
+    box-shadow: none !important;
+    touch-action: manipulation;
+    cursor: pointer;
+  }
+  #screen-shift #shiftTable td.shift-print-cell > button.shift-share-btn-v114 {
+    border-color: #e4bdc4 !important;
+  }
+  /* Tooltip/aria-label tetap tersedia; teks yang memanjangkan tombol disembunyikan. */
+  #screen-shift #shiftTable td.shift-print-cell > button > span {
+    display: none !important;
+  }
+  #screen-shift #shiftTable td.shift-print-cell > button > svg {
+    display: block !important;
+    flex: 0 0 19px !important;
+    width: 19px !important;
+    height: 19px !important;
+    fill: none !important;
+    stroke: currentColor !important;
+    stroke-width: 1.9 !important;
+    stroke-linecap: round !important;
+    stroke-linejoin: round !important;
+  }
+  #screen-shift #shiftTable td.shift-print-cell > button:focus-visible {
+    outline: 3px solid rgba(190, 30, 58, .36) !important;
+    outline-offset: 2px !important;
+  }
+  #screen-shift #shiftTable td.shift-print-cell > button:active {
+    transform: scale(.96);
+  }
+}
+html[data-theme="dark"] #screen-shift #shiftTable td.shift-print-cell > :is(button.shift-print-btn, button.shift-share-btn-v114) {
+  background: #241b1f !important;
+  color: #ffcbd2 !important;
+  border-color: #683139 !important;
+}

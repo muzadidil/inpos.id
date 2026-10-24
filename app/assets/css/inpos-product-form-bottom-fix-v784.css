@@ -1,0 +1,72 @@
+/* INPOS v784 — Tambah/Edit Produk: fill viewport after bottom navigation is hidden.
+   The form body scrolls; its action footer occupies the last visible row above
+   the Android system navigation area, without leaving a ghost bottom-bar gap.
+*/
+@media screen and (max-width: 1024px) {
+  html body.mobile-product-form-active .mobile-bottom {
+    display: none !important;
+  }
+  html body.mobile-product-form-active .app {
+    height: 100dvh !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+  html body.mobile-product-form-active .app > .main {
+    height: 100% !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+  }
+  /* The ordinary menu container reserves bottom-nav space; this screen has no bottom nav. */
+  html body.mobile-product-form-active .app > .main > .container {
+    flex: 1 1 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+  }
+  html body.mobile-product-form-active #screen-productform.active {
+    display: block !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+  html body.mobile-product-form-active #screen-productform .mobile-product-form-page {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 auto !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    margin: 0 auto !important;
+    overflow: hidden !important;
+  }
+  html body.mobile-product-form-active #screen-productform .mobile-product-form-body {
+    flex: 1 1 0 !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 12px !important;
+  }
+  html body.mobile-product-form-active #screen-productform .mobile-product-form-actions {
+    position: relative !important;
+    inset: auto !important;
+    display: grid !important;
+    flex: 0 0 auto !important;
+    align-self: stretch !important;
+    margin: auto 0 0 !important;
+    transform: none !important;
+    z-index: 5 !important;
+    padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}

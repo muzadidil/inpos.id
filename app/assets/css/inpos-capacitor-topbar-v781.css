@@ -1,0 +1,384 @@
+/* INPOS v781 · APK Capacitor only · mobile topbar theme.
+   Do not paint the bottom navigation or website opened in Chrome/PWA.
+   Native class is set at document boot using the INPOSCapacitor user-agent. */
+@media screen and (max-width:1024px) {
+  html.inpos-capacitor-native {
+    --inpos-apk-topbar:#e11d2e;
+    --inpos-apk-topbar-ink:#ffffff;
+    --inpos-apk-topbar-button:rgba(255,255,255,.15);
+    --inpos-apk-topbar-line:rgba(255,255,255,.22);
+  }
+  html.inpos-capacitor-native[data-theme="dark"] {
+    --inpos-apk-topbar:#141619;
+    --inpos-apk-topbar-ink:#ffffff;
+    --inpos-apk-topbar-button:rgba(255,255,255,.11);
+  }
+  html.inpos-capacitor-native body .main > header.topbar,
+  html.inpos-capacitor-native body.mobile-dashboard-active .main > header.topbar {
+    background:var(--inpos-apk-topbar) !important;
+    background-image:none !important;
+    color:var(--inpos-apk-topbar-ink) !important;
+    border-bottom:1px solid var(--inpos-apk-topbar-line) !important;
+    box-shadow:none !important;
+    -webkit-backdrop-filter:none !important;
+    backdrop-filter:none !important;
+  }
+  html.inpos-capacitor-native .main > header.topbar .page-title,
+  html.inpos-capacitor-native .main > header.topbar .page-sub,
+  html.inpos-capacitor-native .main > header.topbar .top-left {
+    color:#fff !important;
+  }
+  html.inpos-capacitor-native .main > header.topbar .mobile-logo,
+  html.inpos-capacitor-native .main > header.topbar .top-actions > .icon-btn,
+  html.inpos-capacitor-native .main > header.topbar .top-actions > button.subscription-topbar-btn-v657 {
+    background:var(--inpos-apk-topbar-button) !important;
+    background-image:none !important;
+    color:#fff !important;
+    border:1px solid var(--inpos-apk-topbar-line) !important;
+    box-shadow:none !important;
+  }
+  html.inpos-capacitor-native .main > header.topbar .top-actions button svg {
+    color:#fff !important;
+    stroke:currentColor !important;
+  }
+  html.inpos-capacitor-native .main > header.topbar .mobile-logo:disabled {opacity:1 !important;}
+  html.inpos-capacitor-native .main > header.topbar .top-actions button:focus-visible,
+  html.inpos-capacitor-native .main > header.topbar .mobile-logo:focus-visible {
+    outline:2px solid #fff !important;
+    outline-offset:2px;
+  }
+  /* Explicitly paint the Android 15/16 edge-to-edge inset on every menu.
+     This is a visual layer only; it never intercepts taps or scrolling. */
+  html.inpos-capacitor-native body::before {
+    content:"" !important;
+    position:fixed !important;
+    top:0 !important;
+    left:0 !important;
+    right:0 !important;
+    height:env(safe-area-inset-top,0px) !important;
+    background:var(--inpos-apk-topbar) !important;
+    pointer-events:none !important;
+    z-index:79 !important;
+  }
+  /* Cashier and Purchase intentionally hide the shared .topbar and use
+     their own dedicated headers: color these to avoid white flashes. */
+  html.inpos-capacitor-native body.mobile-cashier-active #screen-cashier .mobile-sale-header,
+  html.inpos-capacitor-native body.mobile-purchase-native-v73 #screen-purchase-form .mobile-purchase-header-v73 {
+    background:var(--inpos-apk-topbar) !important;
+    background-image:none !important;
+    color:#fff !important;
+    border-bottom:1px solid var(--inpos-apk-topbar-line) !important;
+    box-shadow:none !important;
+  }
+  html.inpos-capacitor-native #screen-cashier .mobile-sale-header .mobile-sale-title,
+  html.inpos-capacitor-native #screen-cashier .mobile-sale-header .mobile-sale-sub,
+  html.inpos-capacitor-native #screen-purchase-form .mobile-purchase-header-v73 .mobile-purchase-title-v73 {
+    color:#fff !important;
+  }
+  html.inpos-capacitor-native #screen-cashier .mobile-sale-header button,
+  html.inpos-capacitor-native #screen-purchase-form .mobile-purchase-header-v73 button {
+    background:var(--inpos-apk-topbar-button) !important;
+    background-image:none !important;
+    color:#fff !important;
+    border:1px solid var(--inpos-apk-topbar-line) !important;
+    box-shadow:none !important;
+  }
+  html.inpos-capacitor-native #screen-cashier .mobile-sale-header button svg,
+  html.inpos-capacitor-native #screen-purchase-form .mobile-purchase-header-v73 button svg {
+    color:#fff !important;
+    stroke:currentColor !important;
+  }
+  /* Hide the browser-only fullscreen button in APK, not in PWA. */
+  html.inpos-capacitor-native .topbar [data-inpos-browser-fullscreen] {
+    display:none !important;
+  }
+}
+
+/* INPOS v1.1.2 | APK-only Edit Produk viewport + bottom action dock.
+ * The hosted site's --mobile-vvh can retain the keyboard-reduced value.
+ * Use the actual dynamic viewport and dock actions to the bottom inset.
+ * Scope to the current Edit Produk screen so unrelated pages keep their layout.
+ */
+@media screen and (max-width:1024px) {
+  html.inpos-capacitor-native body[data-mobile-screen="productform"] .app,
+  html.inpos-capacitor-native body[data-mobile-screen="productform"] .main {
+    height:100dvh !important;
+    max-height:100dvh !important;
+    min-height:0 !important;
+    overflow:hidden !important;
+  }
+  html.inpos-capacitor-native body[data-mobile-screen="productform"] .main {
+    display:flex !important;
+    flex-direction:column !important;
+    padding:0 !important;
+  }
+  html.inpos-capacitor-native body[data-mobile-screen="productform"] .main > .container {
+    flex:1 1 auto !important;
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    overflow:hidden !important;
+    padding:0 !important;
+    margin:0 !important;
+  }
+  html.inpos-capacitor-native body[data-mobile-screen="productform"] #screen-productform.active,
+  html.inpos-capacitor-native body[data-mobile-screen="productform"] #screen-productform .mobile-product-form-page {
+    height:100% !important;
+    max-height:100% !important;
+    min-height:0 !important;
+    overflow:hidden !important;
+  }
+  html.inpos-capacitor-native body[data-mobile-screen="productform"] #screen-productform .mobile-product-form-page {
+    display:flex !important;
+    flex-direction:column !important;
+    width:100% !important;
+  }
+  html.inpos-capacitor-native body[data-mobile-screen="productform"] #screen-productform .mobile-product-form-body {
+    flex:1 1 auto !important;
+    min-height:0 !important;
+    height:auto !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    overscroll-behavior-y:contain !important;
+    -webkit-overflow-scrolling:touch !important;
+    padding-bottom:calc(110px + env(safe-area-inset-bottom, 0px)) !important;
+    scroll-padding-bottom:calc(110px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+  html.inpos-capacitor-native body[data-mobile-screen="productform"] #screen-productform .mobile-product-form-actions {
+    position:fixed !important;
+    left:0 !important;
+    right:0 !important;
+    bottom:env(safe-area-inset-bottom, 0px) !important;
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 !important;
+    transform:none !important;
+    z-index:95 !important;
+    box-sizing:border-box !important;
+    background:var(--surface, #fff) !important;
+    border-top:1px solid var(--line, #ead9dc) !important;
+    box-shadow:0 -5px 18px rgba(35,20,30,.08) !important;
+  }
+  html.inpos-capacitor-native body.mobile-keyboard-open[data-mobile-screen="productform"] #screen-productform .mobile-product-form-actions {
+    display:none !important;
+  }
+  /* The Android 15/16 navigation gesture area must contrast with its icons.
+     Light -> pale surface with dark icons, dark -> dark surface with white. */
+  html.inpos-capacitor-native {
+    --inpos-apk-nav-surface:#fff8f9;
+  }
+  html.inpos-capacitor-native[data-theme="dark"] {
+    --inpos-apk-nav-surface:#141619;
+  }
+  html.inpos-capacitor-native::after {
+    content:"" !important;
+    pointer-events:none !important;
+    position:fixed !important;
+    left:0 !important;
+    right:0 !important;
+    bottom:0 !important;
+    height:env(safe-area-inset-bottom, 0px) !important;
+    background:var(--inpos-apk-nav-surface) !important;
+    z-index:150 !important;
+  }
+}
+
+/* INPOS v1.1.3 | APK-only global 45-menu responsive viewport stabilization.
+   Host app v218 uses inline --mobile-vvh based on visualViewport. That can
+   remain at keyboard height after IME hides, leaving an empty lower screen.
+   This !important custom property resolves it without rewriting the POS DOM. */
+@media screen and (max-width:1024px) {
+  html.inpos-capacitor-native {
+    --mobile-vvh:var(--inpos-apk-viewport-height, 100dvh) !important;
+    --inpos-apk-bottom-safe:env(safe-area-inset-bottom, 0px);
+  }
+  html.inpos-capacitor-native body,
+  html.inpos-capacitor-native body > .app,
+  html.inpos-capacitor-native body > .app > .main {
+    height:var(--inpos-apk-viewport-height, 100dvh) !important;
+    max-height:var(--inpos-apk-viewport-height, 100dvh) !important;
+    min-height:0 !important;
+  }
+  html.inpos-capacitor-native body > .app > .main > .container {
+    min-height:0 !important;
+    min-width:0 !important;
+  }
+  html.inpos-capacitor-native .screen.active {
+    min-width:0 !important;
+    max-width:100% !important;
+    overscroll-behavior-y:contain;
+  }
+  /* V320 selects a screen or inner scroll region for each menu. Keep its
+     measurement-based heights and allow reliable end-of-list scrolling. */
+  html.inpos-capacitor-native .screen.active.mobile-screen-scroll-v320,
+  html.inpos-capacitor-native .screen.active .mobile-primary-scroll-v320 {
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior-y:contain;
+    scroll-padding-top:12px;
+    scroll-padding-bottom:calc(16px + var(--inpos-apk-bottom-safe));
+  }
+  /* If a form field is focused, leave a little room above the IME; don't
+     change heights or visibility of dedicated Cashier/Product/Purchase docks. */
+  html.inpos-capacitor-native .screen.active :is(input, textarea, select) {
+    scroll-margin-bottom:16px;
+  }
+  html.inpos-capacitor-native body:not(.mobile-cashier-active):not(.mobile-product-form-active):not(.mobile-purchase-native-v73) .mobile-bottom {
+    max-width:100%;
+    box-sizing:border-box;
+  }
+  html.inpos-capacitor-native .mobile-bottom .mbtn {
+    min-width:0;
+    -webkit-tap-highlight-color:transparent;
+  }
+}
+
+
+/* INPOS v1.1.16 — Tambah/Edit Produk, Android gesture-navigation dock.
+   Prior versions combined bottom: safe-area-inset-bottom with extra inset
+   padding while the website also owns a full-height flex action footer.
+   Keep footer in the page's flex row so the gesture inset is counted ONCE;
+   do not overlay form fields or disturb the Chrome/PWA website. */
+@media screen and (max-width:1024px) {
+  html.inpos-capacitor-native body[data-mobile-screen="productform"] #screen-productform .mobile-product-form-page,
+  html.inpos-capacitor-native body.mobile-product-form-active #screen-productform .mobile-product-form-page {
+    display:flex !important;
+    flex-direction:column !important;
+    min-height:0 !important;
+    overflow:hidden !important;
+  }
+  html.inpos-capacitor-native body[data-mobile-screen="productform"] #screen-productform .mobile-product-form-body,
+  html.inpos-capacitor-native body.mobile-product-form-active #screen-productform .mobile-product-form-body {
+    flex:1 1 0 !important;
+    min-height:0 !important;
+    overflow-y:auto !important;
+    /* Footer participates in normal layout: no 110px overlay reservation. */
+    padding-bottom:12px !important;
+    scroll-padding-bottom:12px !important;
+  }
+  html.inpos-capacitor-native body[data-mobile-screen="productform"] #screen-productform .mobile-product-form-actions,
+  html.inpos-capacitor-native body.mobile-product-form-active #screen-productform .mobile-product-form-actions {
+    position:relative !important;
+    top:auto !important;
+    right:auto !important;
+    bottom:auto !important;
+    left:auto !important;
+    inset:auto !important;
+    display:grid !important;
+    flex:0 0 auto !important;
+    align-self:stretch !important;
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 !important;
+    transform:none !important;
+    box-sizing:border-box !important;
+    /* 8px in a fitted WebView, or ONE safe-area inset in edge-to-edge mode. */
+    padding:8px 10px max(8px, env(safe-area-inset-bottom, 0px)) !important;
+  }
+  /* Preserve the APK keyboard policy (action dock hidden while typing). */
+  html.inpos-capacitor-native body.mobile-keyboard-open[data-mobile-screen="productform"] #screen-productform .mobile-product-form-actions,
+  html.inpos-capacitor-native body.mobile-keyboard-open.mobile-product-form-active #screen-productform .mobile-product-form-actions {
+    display:none !important;
+  }
+}
+
+
+/* INPOS v1.1.17 — Tambah Produk APK, two-button dock / Android gestures.
+   The create flow hides #mobileProductActiveBtnV503. Prevent a vacant first
+   grid track and the site's historic fixed-footer / bottom-nav reservation.
+   This ONLY affects Capacitor and is safe when opened from onboarding too. */
+@media screen and (max-width:1024px) {
+  html.inpos-capacitor-native body.mobile-product-form-active > .app,
+  html.inpos-capacitor-native body[data-mobile-screen="productform"] > .app {
+    height:var(--inpos-apk-viewport-height, 100dvh) !important;
+    max-height:var(--inpos-apk-viewport-height, 100dvh) !important;
+    min-height:0 !important;
+    overflow:hidden !important;
+  }
+  html.inpos-capacitor-native body.mobile-product-form-active > .app > .main,
+  html.inpos-capacitor-native body[data-mobile-screen="productform"] > .app > .main {
+    display:flex !important;
+    flex-direction:column !important;
+    height:100% !important;
+    max-height:100% !important;
+    min-height:0 !important;
+    padding:0 !important;
+    overflow:hidden !important;
+  }
+  html.inpos-capacitor-native body.mobile-product-form-active > .app > .main > .container,
+  html.inpos-capacitor-native body[data-mobile-screen="productform"] > .app > .main > .container {
+    flex:1 1 0% !important;
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    padding:0 !important;
+    margin:0 !important;
+    overflow:hidden !important;
+  }
+  html.inpos-capacitor-native body.mobile-product-form-active .mobile-bottom,
+  html.inpos-capacitor-native body[data-mobile-screen="productform"] .mobile-bottom {
+    display:none !important;
+  }
+  /* Cover both create and edit whenever the form is currently on screen.
+     The route state may arrive one animation frame after opening the form. */
+  html.inpos-capacitor-native #screen-productform.active {
+    display:block !important;
+    height:100% !important;
+    min-height:0 !important;
+    max-height:100% !important;
+    padding:0 !important;
+    margin:0 !important;
+    overflow:hidden !important;
+  }
+  html.inpos-capacitor-native #screen-productform.active .mobile-product-form-page {
+    display:flex !important;
+    flex-direction:column !important;
+    height:100% !important;
+    max-height:100% !important;
+    min-height:0 !important;
+    overflow:hidden !important;
+  }
+  html.inpos-capacitor-native #screen-productform.active .mobile-product-form-body {
+    flex:1 1 0% !important;
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    padding-bottom:10px !important;
+    scroll-padding-bottom:10px !important;
+  }
+  html.inpos-capacitor-native #screen-productform.active .mobile-product-form-actions {
+    position:relative !important;
+    inset:auto !important;
+    flex:0 0 auto !important;
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 !important;
+    transform:none !important;
+    box-sizing:border-box !important;
+    padding:8px 10px max(8px, env(safe-area-inset-bottom, 0px)) !important;
+  }
+  /* Add mode: no Aktif button, so the available width belongs to Batal + Save. */
+  html.inpos-capacitor-native #screen-productform.active .mobile-product-form-actions:has(> #mobileProductActiveBtnV503[hidden]) {
+    display:grid !important;
+    grid-template-columns:minmax(0, 0.8fr) minmax(0, 1.3fr) !important;
+    grid-template-rows:minmax(46px, auto) !important;
+    column-gap:8px !important;
+    align-items:center !important;
+  }
+  html.inpos-capacitor-native #screen-productform.active .mobile-product-form-actions > #mobileProductActiveBtnV503[hidden] {
+    display:none !important;
+  }
+  html.inpos-capacitor-native #screen-productform.active .mobile-product-form-actions:has(> #mobileProductActiveBtnV503[hidden]) > button:nth-child(2) {
+    grid-column:1 !important;
+    grid-row:1 !important;
+  }
+  html.inpos-capacitor-native #screen-productform.active .mobile-product-form-actions:has(> #mobileProductActiveBtnV503[hidden]) > #mobileProductFormSaveBtn {
+    grid-column:2 !important;
+    grid-row:1 !important;
+  }
+  html.inpos-capacitor-native body.mobile-keyboard-open #screen-productform.active .mobile-product-form-actions,
+  html.inpos-capacitor-native body.mobile-keyboard-open #screen-productform.active .mobile-product-form-actions:has(> #mobileProductActiveBtnV503[hidden]) {
+    display:none !important;
+  }
+}

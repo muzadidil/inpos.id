@@ -1,0 +1,35 @@
+/* INPOS APP v789 — full screen only for real web browsers; ticker behind opaque desktop topbar. */
+/* Applies to existing and newly built Capacitor APKs through the native marker. */
+html.inpos-capacitor-native [data-inpos-browser-fullscreen],
+html.inpos-capacitor-native .inpos-fullscreen-btn,
+html.inpos-capacitor-native #screen-cashier .mobile-sale-header-tools [data-sale-shortcut-v344="F11"] {
+  display: none !important;
+}
+/* Desktop: keep the animated home greeting inside the content painting layer.
+   Solid header blocks text bleed-through on first paint/async home hydration.
+   Do not change the dashboard's existing scroll areas or shift toolbar. */
+@media screen and (min-width:950px) {
+  body.mobile-dashboard-active .main > header.topbar {
+    position:sticky !important;
+    top:0 !important;
+    z-index:96 !important;
+    background:var(--surface, #ffffff) !important;
+    background-image:none !important;
+    -webkit-backdrop-filter:none !important;
+    backdrop-filter:none !important;
+  }
+  body.mobile-dashboard-active .main > .container {
+    position:relative !important;
+    z-index:0 !important;
+  }
+  body.mobile-dashboard-active #mobileHuffaadzHome .mh-greeting {
+    position:relative !important;
+    z-index:0 !important;
+    isolation:isolate;
+    overflow:hidden !important;
+  }
+  body.mobile-dashboard-active #mobileHuffaadzHome .mh-greeting-track {
+    position:relative;
+    z-index:0;
+  }
+}

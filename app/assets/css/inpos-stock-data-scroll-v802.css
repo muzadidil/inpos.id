@@ -1,0 +1,47 @@
+/* INPOS v802 | Data Stok: one native vertical scroller in Android WebView and mobile browser.
+ * Only this page is affected. Preserve fixed topbar and bottom nav.
+ */
+@media screen and (max-width:1024px){
+ html body[data-mobile-screen="stock-data"] > .app,
+ html body[data-mobile-screen="stock-data"] > .app > .main {
+   height:100dvh!important;max-height:100dvh!important;min-height:0!important;
+   overflow:hidden!important;
+ }
+ html body[data-mobile-screen="stock-data"] > .app > .main {
+   display:flex!important;flex-direction:column!important;padding-bottom:0!important;
+ }
+ html body[data-mobile-screen="stock-data"] > .app > .main > .topbar {
+   flex:0 0 auto!important;
+ }
+ /* The ONLY scroll owner: prevent nested screen scroll locking in Android. */
+ html body[data-mobile-screen="stock-data"] > .app > .main > .container {
+   display:block!important;flex:1 1 0%!important;height:0!important;min-height:0!important;
+   max-height:none!important;width:100%!important;box-sizing:border-box!important;
+   overflow-x:hidden!important;overflow-y:auto!important;
+   padding:10px 9px calc(90px + env(safe-area-inset-bottom,0px))!important;
+   scroll-padding-bottom:calc(90px + env(safe-area-inset-bottom,0px))!important;
+   overscroll-behavior-y:contain!important;
+   -webkit-overflow-scrolling:touch!important;
+   touch-action:pan-y!important;
+ }
+ /* Search keyboard may shrink the visible viewport; do not hide search results. */
+ html body.inpos-input-active-v582[data-mobile-screen="stock-data"] > .app > .main {
+   height:var(--inpos-v582-visible-bottom,100dvh)!important;
+   max-height:var(--inpos-v582-visible-bottom,100dvh)!important;
+ }
+ html body[data-mobile-screen="stock-data"] #screen-stock-data.active,
+ html body[data-mobile-screen="stock-data"] #screen-stock-data.mobile-screen-scroll-v320,
+ html body[data-mobile-screen="stock-data"] #screen-stock-data.mobile-screen-shell-v320,
+ html body[data-mobile-screen="stock-data"] #screen-stock-data .stock-data-page,
+ html body[data-mobile-screen="stock-data"] #screen-stock-data .stock-data-list,
+ html body[data-mobile-screen="stock-data"] #stockDataListV219 {
+   height:auto!important;max-height:none!important;min-height:0!important;
+   overflow:visible!important;touch-action:pan-y!important;
+ }
+ html body[data-mobile-screen="stock-data"] #screen-stock-data .stock-data-page {
+   align-content:start!important;
+ }
+ html body[data-mobile-screen="stock-data"] #stockDataListV219>* {
+   content-visibility:visible!important;
+ }
+}

@@ -1,0 +1,38 @@
+# INPOS Frontend production for cPanel / Apache.
+Options -Indexes
+<IfModule mod_headers.c>
+Header always set X-Content-Type-Options "nosniff"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+<FilesMatch "\.[a-f0-9]{12}\.(css|js|webp|png)$">
+Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+<FilesMatch "^(index\.html|sw\.js)$">
+Header set Cache-Control "no-cache, max-age=0, must-revalidate"
+</FilesMatch>
+<FilesMatch "^(manifest\.webmanifest|icon(?:-192|-512)?\.png)$">
+Header set Cache-Control "public, max-age=86400"
+</FilesMatch>
+</IfModule>
+<IfModule mod_brotli.c>
+AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/javascript application/javascript application/json application/manifest+json image/svg+xml
+</IfModule>
+<IfModule !mod_brotli.c>
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json application/manifest+json image/svg+xml
+</IfModule>
+</IfModule>
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</IfModule>
+PassengerAppRoot /home/u774868168/domains/inpos.id/app/hbuilds/current/nodejs
+PassengerAppType node
+PassengerNodejs /opt/alt/alt-nodejs22/root/bin/node
+PassengerStartupFile app.js
+PassengerBaseURI /
+PassengerRestartDir /home/u774868168/domains/inpos.id/app/hbuilds/current/nodejs/tmp
+SetEnv NODE_OPTIONS "--require /home/u774868168/domains/inpos.id/app/hbuilds/config/preload-timestamp.js"
+SetEnv LSNODE_CONSOLE_LOG console.log
+SetEnv TOKIO_WORKER_THREADS 2

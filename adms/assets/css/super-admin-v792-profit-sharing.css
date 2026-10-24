@@ -1,0 +1,23 @@
+/* INPOS ADMS v792: compact responsive multi admin and profit sharing */
+.sa-user-tag-v792{color:var(--muted,#64748b);font-weight:600;margin-left:6px;display:inline-block}
+.sa-profit-v792{padding:14px 0 24px}.sa-profit-head-v792{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}.sa-profit-head-v792 h3{margin:0;font-size:18px}.sa-profit-head-v792 label{font-size:12px;font-weight:650;display:flex;gap:8px;align-items:center}.sa-profit-head-v792 input{padding:9px;border:1px solid var(--line,#ddd);border-radius:10px;background:var(--card,#fff);color:inherit}
+.sa-profit-stats-v792{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px;margin-bottom:12px}.sa-profit-stat-v792{background:var(--card,#fff);border:1px solid var(--line,#e5e7eb);border-radius:14px;padding:13px}.sa-profit-stat-v792 span{font-size:12px;color:var(--muted,#64748b);display:block}.sa-profit-stat-v792 strong{display:block;font-size:17px;margin-top:5px;overflow-wrap:anywhere}
+.sa-profit-table-wrap-v792{max-width:100%;overflow-x:auto;border:1px solid var(--line,#e5e7eb);border-radius:14px;background:var(--card,#fff)}.sa-profit-table-v792{width:100%;border-collapse:collapse;min-width:320px;text-align:left}.sa-profit-table-v792 th,.sa-profit-table-v792 td{padding:12px;border-bottom:1px solid var(--line,#e5e7eb);font-size:13px}.sa-profit-table-v792 th{font-size:12px}.sa-profit-table-v792 td small{display:block;color:var(--muted,#64748b);margin-top:4px}.sa-profit-table-v792 tr:last-child td{border-bottom:0}
+.sa-profit-settings-v792,.sa-admin-form-v792{border:1px solid var(--line,#e5e7eb);border-radius:14px;padding:15px;background:var(--card,#fff);margin-top:14px}.sa-profit-fields-v792{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}.sa-profit-fields-v792 label{font-size:12px;font-weight:650;display:flex;flex-direction:column;gap:6px}.sa-profit-fields-v792 input{background:var(--card,#fff);color:inherit;border:1px solid var(--line,#e5e7eb);border-radius:9px;padding:10px;min-width:0;max-width:100%}
+.sa-admin-list-v792{display:grid;gap:8px}.sa-admin-item-v792{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line,#e5e7eb)}.sa-admin-item-v792 strong{display:block}.sa-admin-item-v792 small{display:block;color:var(--muted,#64748b);font-size:12px;margin-top:3px}.sa-admin-form-v792 .btnwrap{display:flex;gap:13px;flex-wrap:wrap;align-items:center}.sa-payment-main-tabs{overflow-x:auto;white-space:nowrap}.sa-payment-main-tabs .sa-payment-main-tab{flex:0 0 auto}
+@media(max-width:390px){.sa-profit-stats-v792{grid-template-columns:repeat(2,minmax(0,1fr))}.sa-profit-stat-v792 strong{font-size:14px}.sa-profit-fields-v792{grid-template-columns:repeat(2,minmax(0,1fr))}.sa-profit-table-v792 th,.sa-profit-table-v792 td{padding:9px 7px}}
+
+/* v793: payment tabs stay on ONE row on all screen widths; scroll instead of wrapping */
+.sa-payment-main-tabs{display:flex!important;flex-wrap:nowrap!important;grid-template-columns:none!important;gap:6px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.sa-payment-main-tabs .sa-payment-main-tab{flex:1 0 auto!important;min-width:max-content;white-space:nowrap;min-height:38px;padding:8px 10px;font-size:12px}
+.sa-payment-main-tabs .sa-payment-main-tab svg{width:14px;height:14px}
+.sa-profit-table-v792 td:last-child,.sa-profit-table-v792 th:last-child{text-align:right;white-space:nowrap}
+.sa-profit-paid-v793,.sa-profit-unpaid-v793{border:0;border-radius:9px;padding:9px 11px;font-size:12px;font-weight:700;line-height:1.1;font-family:inherit;min-height:34px;white-space:nowrap}
+.sa-profit-unpaid-v793{background:#e5e7eb;color:#404853;cursor:pointer}
+.sa-profit-unpaid-v793:hover{background:#d1d5db}
+.sa-profit-unpaid-v793:focus-visible{outline:2px solid #2563eb;outline-offset:2px}
+.sa-profit-paid-v793{background:#15803d!important;color:#fff!important;opacity:1!important;cursor:default}
+.sa-profit-unpaid-label-v793{display:inline-block;color:var(--muted,#64748b);font-size:12px}
+@media(max-width:400px){.sa-payment-main-tabs{padding:4px}.sa-payment-main-tabs .sa-payment-main-tab{font-size:11px;padding:7px 8px;gap:4px;min-height:36px}.sa-payment-main-tabs svg{display:none}.sa-profit-paid-v793,.sa-profit-unpaid-v793{padding:8px;font-size:11px}}
+
+.sa-profit-unpaid-v793:disabled{opacity:1!important;cursor:default;color:#5e6876}

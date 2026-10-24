@@ -1,0 +1,40 @@
+/* INPOS v1.1.4 - two accessible actions in Shift Kasir */
+#shiftTable .shift-print-cell {gap:6px;}
+#shiftTable .shift-print-cell button {min-width:0;}
+#shiftTable .shift-share-btn-v114 {display:inline-flex;align-items:center;gap:5px;justify-content:center;
+ border:1px solid #e5bec3;color:#b71327;background:#fff;border-radius:10px;padding:8px 10px;
+ font-weight:700;font:inherit;font-size:12px;cursor:pointer;}
+#shiftTable .shift-share-btn-v114 svg {width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:900px) {
+ #shiftTable .shift-print-cell {display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:7px!important;}
+ #shiftTable .shift-print-cell button {flex:1 1 auto;min-height:38px;}
+ #shiftTable .shift-print-cell::before {display:none!important;}
+}
+html[data-theme="dark"] #shiftTable .shift-share-btn-v114 {background:#21171b;color:#ffc4ca;border-color:#683139;}
+
+/* INPOS v1.1.6 - Shift-only compact thermal printing (58/80 mm). */
+@media print {
+ #printZone.inpos-shift-v116 {min-height:0!important;height:auto!important;padding:1mm!important;margin:0!important;
+     box-shadow:none!important;break-after:auto!important;overflow:visible!important;}
+ #printZone.inpos-shift-v116 .shift-print-compact-v116 {padding:0!important;margin:0!important;border:0!important;
+     background:#fff!important;color:#000!important;min-height:0!important;}
+ #printZone.inpos-shift-v116 .shift-print-compact-v116 pre {white-space:pre!important;overflow:visible!important;
+     font:normal 10px/1.14 monospace!important;letter-spacing:0!important;margin:0!important;padding:0!important;color:#000!important;}
+ #printZone.inpos-shift-v116:after {content:none!important;display:none!important;}
+}
+
+/* INPOS v785 Detail Produksi: compact thermal 58 / 80 mm and short ending. */
+.production-receipt-preview-v513 .inpos-production-paper-v785 {display:block;margin:0 0 8px;color:var(--muted);font-size:12px;font-weight:700;}
+@media print {
+ #printZone.inpos-production-v785 {margin:0!important;min-height:0!important;height:auto!important;max-height:none!important;
+  padding:0.8mm 1.2mm 0.6mm!important;background:#fff!important;color:#111!important;
+  border:0!important;box-shadow:none!important;overflow:visible!important;break-after:auto!important;box-sizing:border-box!important;}
+ #printZone.inpos-production-v785 .production-thermal-v785 {margin:0!important;padding:0!important;
+  background:#fff!important;color:#111!important;min-height:0!important;height:auto!important;}
+ #printZone.inpos-production-v785 .production-thermal-v785 pre {margin:0!important;padding:0!important;white-space:pre!important;
+  overflow:visible!important;color:#111!important;font-family:"Courier New",Courier,monospace!important;
+  letter-spacing:0!important;font-weight:400!important;}
+ #printZone.receipt-58.inpos-production-v785 .production-thermal-v785 pre {font-size:9.7px!important;line-height:1.1!important;}
+ #printZone.receipt-80.inpos-production-v785 .production-thermal-v785 pre {font-size:9.3px!important;line-height:1.1!important;}
+ #printZone.inpos-production-v785::after {content:none!important;display:none!important;}
+}

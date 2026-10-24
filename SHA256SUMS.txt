@@ -1,0 +1,2 @@
+9ed69ae70cd0ae3a102bf27f339f13ce7565c7f4bda1feb48585034ad96b5405  app-release.apk
+9ed69ae70cd0ae3a102bf27f339f13ce7565c7f4bda1feb48585034ad96b5405  download/INPOS-v1.1.0-release.apk

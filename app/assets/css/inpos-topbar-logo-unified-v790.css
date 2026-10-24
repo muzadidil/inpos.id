@@ -1,0 +1,78 @@
+/* INPOS APP v790 — satu ukuran logo toko di setiap menu (Web dan APK).
+   Perubahan ini hanya mengatur ukuran visual, tidak mengubah sumber logo/aksi kembali. */
+:root {
+  --inpos-topbar-store-logo-size: 42px;
+  --inpos-topbar-store-logo-radius: 12px;
+}
+/* Header umum dipakai Beranda, Produk, Shift Kasir, Produksi, dan menu lain. */
+html body .main > header.topbar .top-left > button#inposV470TopbarBack,
+html body.mobile-dashboard-active .main > header.topbar .top-left > button#inposV470TopbarBack {
+  box-sizing: border-box !important;
+  display: grid !important;
+  place-items: center !important;
+  flex: 0 0 var(--inpos-topbar-store-logo-size) !important;
+  inline-size: var(--inpos-topbar-store-logo-size) !important;
+  block-size: var(--inpos-topbar-store-logo-size) !important;
+  width: var(--inpos-topbar-store-logo-size) !important;
+  height: var(--inpos-topbar-store-logo-size) !important;
+  min-width: var(--inpos-topbar-store-logo-size) !important;
+  min-height: var(--inpos-topbar-store-logo-size) !important;
+  max-width: var(--inpos-topbar-store-logo-size) !important;
+  max-height: var(--inpos-topbar-store-logo-size) !important;
+  aspect-ratio: 1 / 1 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  padding: 0 !important;
+  border-radius: var(--inpos-topbar-store-logo-radius) !important;
+  overflow: hidden !important;
+}
+/* Penjualan memakai header tersendiri; ukuran harus identik dengan header umum. */
+html body #screen-cashier .mobile-sale-header > button.mobile-sale-menu-btn,
+html body .mobile-sale-ui .mobile-sale-header > button.mobile-sale-menu-btn {
+  box-sizing: border-box !important;
+  display: grid !important;
+  place-items: center !important;
+  flex: 0 0 var(--inpos-topbar-store-logo-size) !important;
+  inline-size: var(--inpos-topbar-store-logo-size) !important;
+  block-size: var(--inpos-topbar-store-logo-size) !important;
+  width: var(--inpos-topbar-store-logo-size) !important;
+  height: var(--inpos-topbar-store-logo-size) !important;
+  min-width: var(--inpos-topbar-store-logo-size) !important;
+  min-height: var(--inpos-topbar-store-logo-size) !important;
+  max-width: var(--inpos-topbar-store-logo-size) !important;
+  max-height: var(--inpos-topbar-store-logo-size) !important;
+  aspect-ratio: 1 / 1 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  padding: 0 !important;
+  border-radius: var(--inpos-topbar-store-logo-radius) !important;
+  overflow: hidden !important;
+}
+/* Sama sumber ikon toko, isi penuh namun tidak terpotong. */
+html body .main > header.topbar #inposV470TopbarBack > img.tenant-logo-v503,
+html body .mobile-sale-ui .mobile-sale-header > .mobile-sale-menu-btn > img.tenant-logo-v503 {
+  box-sizing: border-box !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  border: 0 !important;
+  padding: 0 !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  border-radius: 10px !important;
+}
+/* Bila logo toko belum diisi: SVG fallback tetap proporsional di kedua header. */
+html body .main > header.topbar #inposV470TopbarBack > svg,
+html body .mobile-sale-ui .mobile-sale-header > .mobile-sale-menu-btn > svg {
+  box-sizing: border-box !important;
+  width: 30px !important;
+  height: 30px !important;
+  max-width: 30px !important;
+  max-height: 30px !important;
+  display: block !important;
+}

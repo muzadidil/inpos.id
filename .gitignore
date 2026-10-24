@@ -2,3 +2,9 @@ node_modules/
 dist/
 .env
 *.log
+
+# Rilis biner & arsip backup — bukan source code, diterbitkan lewat download.php di server
+app.zip
+download/
+downloads/
+*.apk

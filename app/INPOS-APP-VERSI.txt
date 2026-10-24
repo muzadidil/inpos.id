@@ -1,0 +1,2 @@
+INPOS APP v802
+Fix scroll Data Stok pada APK Capacitor dan web mobile; navigasi tetap.

@@ -1,0 +1,11 @@
+{
+  "packageId": "id.inpos.kasir",
+  "versionName": "1.1.31",
+  "versionCode": 42,
+  "apkUrl": "https://inpos.id/download/INPOS-v1.1.31-release.apk",
+  "sha256": "ffafaa346c5809a09bbf4435c5134f8e9e5b2df7af0c9f570005f52c158c3571",
+  "size": 7959848,
+  "notes": "Login: salam berdasarkan waktu, judul animasi 5 detik, tombol sidik jari ringkas satu baris, label versi APK. Fitur lama dipertahankan.",
+  "mandatory": false,
+  "publishedAt": "2026-10-23T17:00:22.409Z"
+}
