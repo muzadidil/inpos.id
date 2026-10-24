@@ -103,7 +103,7 @@ function inpos_api_json(string $path, int $timeout=8): array {
     $data=json_decode($r['body'],true);
     return ['status'=>$r['status'],'data'=>is_array($data)?$data:[]];
 }
-function inpos_page(string $bootstrap=''): never {
+function inpos_page(string $bootstrap='', string $headExtra=''): never {
     header('Content-Type: text/html; charset=utf-8');
     header('Cache-Control: no-store, private, max-age=0');
     header('X-Content-Type-Options: nosniff');
@@ -112,8 +112,42 @@ function inpos_page(string $bootstrap=''): never {
     $html=file_get_contents(__DIR__.'/page-template.html');
     if ($html===false){http_response_code(500);echo 'Template INPOS tidak ditemukan.';exit;}
     $safe='window.INPOS_FRONTEND_RELEASE='.inpos_json_safe('v769-frontend-split').';window.INPOS_LOCAL_SERVER=true;'.$bootstrap;
-    echo preg_replace_callback('/<head[^>]*>/i',static function($m) use ($safe){return $m[0].'<script>'.$safe.'</script>';},$html,1);
+    $inject=$headExtra.'<script>'.$safe.'</script>';
+    echo preg_replace_callback('/<head[^>]*>/i',static function($m) use ($inject){return $m[0].$inject;},$html,1);
     exit;
+}
+/**
+ * Meta Open Graph untuk satu produk, dipakai supaya link berbagi produk
+ * (toko.inpos.id/{slug}?p={id}) menampilkan gambar & nama produk saat
+ * di-paste ke WhatsApp. WhatsApp tidak menjalankan JavaScript, jadi meta
+ * ini harus sudah ada di HTML mentah sebelum skrip katalog berjalan.
+ */
+function inpos_product_og(string $slug, string $productId): string {
+    $r=inpos_backend('/katalog/'.$slug.'.json','GET',null,['Accept: application/json'],6);
+    if ($r['status']!==200) return '';
+    $data=json_decode($r['body'],true);
+    if (!is_array($data) || !isset($data['products']) || !is_array($data['products'])) return '';
+    $product=null;
+    foreach ($data['products'] as $p) {
+        if (is_array($p) && isset($p['id']) && (string)$p['id']===$productId) { $product=$p; break; }
+    }
+    if ($product===null) return '';
+    $storeName=(string)($data['store']['name']??'Toko Online');
+    $name=(string)($product['name']??'Produk');
+    $title=$name.' - '.$storeName;
+    $price=is_numeric($product['price']??null)?(float)$product['price']:null;
+    $desc=$price!==null?('Rp'.number_format($price,0,',','.').' • Tersedia di '.$storeName):('Tersedia di '.$storeName);
+    $pageUrl='https://'.($_SERVER['HTTP_HOST']??'toko.inpos.id').'/'.$slug.'?p='.rawurlencode($productId);
+    $image=(string)($product['image']??'');
+    // og:image wajib URL yang bisa diambil WhatsApp; data: URI (base64 inline) tidak didukung.
+    $imageTag=(preg_match('~^https://~i',$image))?'<meta property="og:image" content="'.htmlspecialchars($image,ENT_QUOTES,'UTF-8').'">':'';
+    return
+        '<meta property="og:type" content="product">'.
+        '<meta property="og:title" content="'.htmlspecialchars($title,ENT_QUOTES,'UTF-8').'">'.
+        '<meta property="og:description" content="'.htmlspecialchars($desc,ENT_QUOTES,'UTF-8').'">'.
+        '<meta property="og:url" content="'.htmlspecialchars($pageUrl,ENT_QUOTES,'UTF-8').'">'.
+        $imageTag.
+        '<meta name="twitter:card" content="'.($imageTag!==''?'summary_large_image':'summary').'">';
 }
 function inpos_offline(int $code=503): never {
     http_response_code($code);header('Content-Type: text/html; charset=utf-8');header('Cache-Control: no-store');

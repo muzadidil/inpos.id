@@ -1416,3 +1416,71 @@ html body .sr-only {
     transition: none !important;
   }
 }
+
+/* ============================ TOMBOL SHARE (v781) ============================ */
+
+html body .product .photo {
+  position: relative !important;
+}
+
+html body .product .share {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 4;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .92);
+  color: var(--wt780-ink-2, #5a6474);
+  box-shadow: 0 1px 4px rgba(18, 24, 38, .18);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(2px);
+  transition: background-color .14s ease, color .14s ease, transform .14s ease;
+}
+
+html body .product .share:hover {
+  background: #fff;
+  color: var(--accent, #d91d36);
+  transform: scale(1.06);
+}
+
+html body .product .share:active {
+  transform: scale(.96);
+}
+
+html body .product:has(.stock.out) .share {
+  z-index: 4;
+}
+
+/* Sorot kartu produk saat dibuka dari link share (?p=) */
+html body .product.focused {
+  animation: wt780-focus-pulse 1.4s ease 2;
+}
+
+@keyframes wt780-focus-pulse {
+  0%, 100% { box-shadow: var(--wt770-shadow, 0 1px 2px rgba(18, 24, 38, .04)); border-color: var(--wt770-line, #e6e8ee); }
+  35% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent, #d91d36) 30%, transparent); border-color: var(--accent, #d91d36); }
+}
+
+@supports not (color: color-mix(in srgb, red 50%, blue)) {
+  html body .product.focused {
+    animation: wt780-focus-pulse-fallback 1.4s ease 2;
+  }
+  @keyframes wt780-focus-pulse-fallback {
+    0%, 100% { box-shadow: none; }
+    35% { box-shadow: 0 0 0 4px rgba(217, 29, 54, .35); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body .product.focused {
+    animation: none !important;
+    outline: 2px solid var(--accent, #d91d36);
+    outline-offset: 2px;
+  }
+}
